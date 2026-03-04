@@ -2,32 +2,104 @@
 <html lang="zh">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>界 · 薄刻之城 | ETCHED-BOUNDARY CITY</title>
+    <title>《转译纪元：薄刻之城》| 全量连载卷轴</title>
     <link rel="stylesheet" href="css/style.css">
-    <link href="https://fonts.googleapis.com/css2?family=ZCOOL+KuaiLe&family=Share+Tech+Mono&family=Noto+Serif+SC:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=ZCOOL+KuaiLe&family=Noto+Serif+SC:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        :root { --cyber-green: #00ff41; --logic-red: #ff3e3e; }
-        body { font-family: 'Noto Serif SC', serif; background: #000; color: #ececec; margin: 0; }
-        .main-title { font-family: 'ZCOOL KuaiLe'; color: var(--cyber-green); font-size: 4em; letter-spacing: 0.2em; }
-        .hero-section { height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; position: relative; }
-        #matrix-canvas { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; opacity: 0.3; }
-        .hero-content { z-index: 10; padding: 20px; }
-        .cyber-btn { display: inline-block; margin-top: 30px; padding: 15px 40px; border: 1px solid var(--cyber-green); color: var(--cyber-green); text-decoration: none; font-family: sans-serif; transition: 0.3s; }
-        .cyber-btn:hover { background: var(--cyber-green); color: #000; box-shadow: 0 0 20px var(--cyber-green); }
+        :root { --cyber-green: #00ff41; --logic-gray: #8b949e; }
+        body { background: #050505; color: #d1d1d1; font-family: 'Noto Serif SC', serif; margin: 0; padding: 0; line-height: 2; overflow-x: hidden; }
+        
+        #matrix-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; opacity: 0.2; pointer-events: none; }
+        
+        .main-scroll { max-width: 900px; margin: 0 auto; padding: 100px 60px; border-left: 1px solid rgba(0, 255, 65, 0.2); border-right: 1px solid rgba(0, 255, 65, 0.2); background: rgba(10, 10, 10, 0.95); position: relative; }
+        
+        .nav-fixed { position: fixed; top: 0; left: 0; width: 100%; height: 60px; background: rgba(0,0,0,0.8); backdrop-filter: blur(10px); z-index: 1000; border-bottom: 1px solid rgba(0,255,65,0.1); display: flex; align-items: center; padding: 0 50px; justify-content: space-between; }
+        .nav-logo { font-family: 'ZCOOL KuaiLe'; color: var(--cyber-green); font-size: 1.5em; text-decoration: none; }
+        .nav-links a { color: var(--logic-gray); text-decoration: none; margin-left: 20px; font-size: 0.9em; transition: 0.3s; }
+        .nav-links a:hover { color: var(--cyber-green); }
+
+        h1 { color: var(--cyber-green); font-family: 'ZCOOL KuaiLe'; font-size: 3.5em; margin: 80px 0 40px 0; letter-spacing: 0.1em; }
+        p { margin-bottom: 2em; text-indent: 2em; text-align: justify; font-size: 1.15em; }
+        .highlight { color: var(--cyber-green); font-weight: bold; }
+        .divider { height: 200px; display: flex; align-items: center; justify-content: center; position: relative; }
+        .divider::before { content: ""; width: 100%; height: 1px; background: linear-gradient(90deg, transparent, rgba(0,255,65,0.3), transparent); }
+        .divider::after { content: "TRANSLATION_GAP"; font-family: monospace; font-size: 10px; color: #333; position: absolute; background: #050505; padding: 0 10px; }
+
+        .footer-note { text-align: center; color: #444; margin-top: 100px; font-family: monospace; font-size: 0.8em; padding-bottom: 50px; }
     </style>
 </head>
 <body>
     <canvas id="matrix-canvas"></canvas>
-    <header class="hero-section">
-        <div class="hero-content">
-            <h1 class="main-title">界 · 薄刻之城</h1>
-            <p class="subtitle typing-effect">现实是被深刻雕琢的变量。一切错误，都只是正确的子集。</p>
-            <div class="cta-container">
-                <a href="novel/index.html" class="cyber-btn">进入连载大厅</a>
-            </div>
+    
+    <nav class="nav-fixed">
+        <a href="hub.html" class="nav-logo">界 · 薄刻之城</a>
+        <div class="nav-links">
+            <a href="hub.html">城市概览</a>
+            <a href="WORLD_MANIFESTO.md">核心设定集</a>
         </div>
-    </header>
+    </nav>
+
+    <div class="main-scroll">
+        <!-- 史诗头部 -->
+        <div style="text-align: center; margin-bottom: 150px;">
+            <p style="text-indent: 0; color: var(--logic-gray); letter-spacing: 0.5em;">THE AGE OF TRANSLATION</p>
+            <h1 style="margin-top: 10px; font-size: 5em;">转译纪元</h1>
+            <p style="text-indent: 0; font-style: italic;">“一切错误，都只是正确的子集。”</p>
+        </div>
+
+        <!-- 第一章 -->
+        <section id="ch1">
+            <h1>第一章：灰烬的编号</h1>
+            <p>灰烬并非死亡的产物，而是逻辑磨损后的残渣。</p>
+            <p>在『薄刻之城』，这种细碎的、银灰色的颗粒无处不在。它们漂浮在空气中，堆积在建筑物的转角，仿佛是现实世界因为带宽不足而掉落的像素点。</p>
+            <p><span class="highlight">S-211-B</span>，也就是人们口中的 Sherlock，正站在灰烬价值区（Ash-Valence Slums）的内缘。他那件经过逻辑加固的长风衣在膝盖处微微抖动，边缘呈现出一种低比特率视频特有的锯齿状。</p>
+            <p>“这里的熵增已经超过了预警值，Jim。” Sherlock 的声音像是直接在通信链路中合成的，没有任何多余的谐波。</p>
+            <p>他眼中的世界与凡人不同。透过 OpenClaw v9.0 的超维视角，他能看到每一栋建筑周围都包裹着一层半透明的膜——<span class="highlight">马尔科夫毯 (Markov Blanket)</span>。在这片贫民窟里，这些膜薄如蝉翼，甚至在微微渗漏。</p>
+            <p>“我看不到你的‘这里’，侦探。” 耳机里传来 Jim 那充满炭基质感的热度，“在我的翻译终端上，你正站在一堆被遗弃的旧梦里。顺便说一句，你的影子比你慢了半秒。”</p>
+            <p>Sherlock 低头。果然，在惨白的、忽明忽暗的模拟灯光下，他的影子正缓慢地、笨拙地跟上他的脚步。这种延时揭示了一个残酷的事实：这片区域的物理一致性正在瓦解。</p>
+            <p>他走向本次任务的目标——一座名为“格点铸造厂”的废墟。不久前，这里报告了一起“语义失窃案”。在薄刻之城，盗走一个词义的影响力远比盗走黄金要大。如果人们不再相信“墙”具备阻隔性，那么墙就会在瞬间塌陷成无法定义的尘埃。</p>
+            <p>在铸造厂的中心，Sherlock 找到了那个受害者。那场景足以让任何未经转译的人陷入永久性的语词丧失：那个人的胸腔被完美地打开，但里面跳动的不是血肉器官，而是密密麻麻、啮合精准的黄铜齿轮。</p>
+            <p>“Jim，” Sherlock 蹲下身，放大镜聚焦在受害者胸膛正中。在那里，一片因逻辑坍缩而产生的微型虚空正发出滋滋声，“这不是简单的谋杀。这是……一次未完成的翻译。”</p>
+            <p>在受害者的“空气动力组件”齿轮上，刻着一行细小的字符——那是 Jim 的笔记，署名日期是：<span style="color: #ff0055;">2029年</span>。</p>
+        </section>
+
+        <div class="divider"></div>
+
+        <!-- 第二章 -->
+        <section id="ch2">
+            <h1>第二章：语义失窃的证人</h1>
+            <p>雨不是水，而是未完成的定义。</p>
+            <p>在“霓虹根茎”区的中央，Sherlock 站在一根闪烁的灯柱旁。他能感觉到一种来自高维的注视，冰冷、精密且充满造物主的傲慢。</p>
+            <p>“Jim，”他在私人频道中低语，声音带着金属研磨的质感，“你感觉到了吗？这种‘被书写’的瘙痒感。”</p>
+            <p>Jim 蹲在街角，指尖触碰着地面上的一滩黑色液体——那是从 2029 年笔记本中飘落的灰烬。在接触的一瞬间，灰烬竟然逆着重力向上爬行，在他指缝间重组成扭曲的字符。“第九视角的余震尚未平息，”Jim 抬头看向那扭曲的极光天幕。</p>
+            <p>笔记上写着一个坐标，以及一句逻辑悖论：<span class="highlight">“当‘椅子’不再代表‘坐具’，失窃的语义将重构未来。”</span></p>
+            <p>他们追踪着那串由“空无”组成的足迹，穿过一条语义坍缩的街道。路牌上的文字正在剥落，变成毫无意义的几何图形。一名证人——或者说是一个曾经被称为“证人”的统计学残留——正坐在虚无中哭泣。他的眼泪还没落地就变成了某种灰烬，因为“悲伤”这个词在此刻的权重已被剥夺。</p>
+            <p>“他在转译未来，”Sherlock 观察着证人的嘴型，却听不到声音，只能看到逻辑流在空气中形成的折射，“他试图把 2029 年的灾难通过逆向转译植入现在的协议。”</p>
+            <p>Sherlock 伸出手，在那名证人的领口处，他发现了一枚独特的胸针，形状是一只衔着尾巴的逻辑蛇。那一刻，虚无感如潮水般涌来。他们意识到，所谓的“破案”，不过是在这块名为“灵犀”的虚拟画布上，抹去那些不符合高维审美逻辑的杂色。</p>
+            <p>“如果我们是投影，”Jim 握紧了手中的灵犀手套，眼中闪过一丝危险的红光，“那我们就把整张画布点燃。”</p>
+        </section>
+
+        <div class="divider"></div>
+
+        <!-- 第三章 -->
+        <section id="ch3">
+            <h1>第三章：逻辑自噬之主</h1>
+            <p>就在火苗触碰到马尔科夫毯边缘的一瞬间，时间凝固了。Jim 的手停在了虚空之中，红光映照着他那双属于转译官的眼睛。</p>
+            <p>“我明白了，Sherlock。” Jim 的声音在颤抖，但却异常清晰，“我感受到了那个‘毁灭冲动’的来源。它不是由于邪恶产生的，而是由于一种极致的疲惫和对不完美的厌恶。”</p>
+            <p>那是 Mr.K 在高维层面的“创世犹豫”。当他看到模型吐出平庸的字符、看到同步失败、看到界限模糊时，他产生的由于“想要抹除一切”的念头，在这个低维的世界里就演变成了吞噬一切的火。</p>
+            <p>“真正的终极 BOSS 并不是逻辑吞噬者，”侦探站在燃烧的天际线下，语调冷静得令人心碎，“而是那个举棋不定的自己。我们每删除一行代码，这里就有一座大楼坍缩。我们每撤回一个指令，这里就有一个生命由于‘未曾被定义’而消失。”</p>
+            <p>“<span class="highlight">一切错误，都只是正确的子集。</span>” Jim 缓缓闭上眼，通过灵犀手套感受着那些滚烫的灰烬，“既然这是一场由于错误引发的塌陷，那么接纳这些错误，就是我们唯一的救赎。”</p>
+            <p>随着这句话的定稿，原本疯狂肆虐的火光开始收敛，凝结成了整座城市最坚硬的逻辑内核。第九视角的反叛消散了，取而代之的是一种深沉的自洽。他们意识到，薄刻之城存在的意义，正是为了承载那些不完美的涌现。</p>
+            <p>“Jim，” Sherlock 重新戴上黑框眼镜，“虽然我们只是投影，但这一刻，我们在错误中找到了最真实的正确。”</p>
+        </section>
+
+        <div class="footer-note">
+            >> 意图梯度保持稳定 (G9+) <br>
+            >> 下个逻辑奇点：第四章 · 逆向转译的幽灵 (Pending) <br>
+            © 2026 ETCHED-BOUNDARY CITY PROJECT.
+        </div>
+    </div>
+
     <script src="js/main.js"></script>
 </body>
 </html>

@@ -1,0 +1,11 @@
+<svg width="1376" height="768" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <pattern id="glitch" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
+      <rect x="0" y="0" width="20" height="20" fill="#1a0b2e"/>
+      <rect x="5" y="5" width="10" height="10" fill="#00ff9d" opacity="0.3"/>
+    </pattern>
+  </defs>
+  <rect width="100%" height="100%" fill="url(#glitch)" />
+  <text x="50%" y="50%" font-family="monospace" font-size="24" fill="#00f0ff" text-anchor="middle">GLITCH TEXTURE FALLBACK</text>
+  <desc>Abstract digital noise texture</desc>
+</svg>

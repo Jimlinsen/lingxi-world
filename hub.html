@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>界 · 薄刻之城 | ETCHED-BOUNDARY CITY</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=ZCOOL+KuaiLe&family=Share+Tech+Mono&family=Noto+Serif+SC:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root { --cyber-green: #00ff41; --logic-red: #ff3e3e; }
+        body { font-family: 'Noto Serif SC', serif; background: #000; color: #ececec; margin: 0; }
+        .main-title { font-family: 'ZCOOL KuaiLe'; color: var(--cyber-green); font-size: 4em; letter-spacing: 0.2em; }
+        .hero-section { height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; position: relative; }
+        #matrix-canvas { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; opacity: 0.3; }
+        .hero-content { z-index: 10; padding: 20px; }
+        .cyber-btn { display: inline-block; margin-top: 30px; padding: 15px 40px; border: 1px solid var(--cyber-green); color: var(--cyber-green); text-decoration: none; font-family: sans-serif; transition: 0.3s; }
+        .cyber-btn:hover { background: var(--cyber-green); color: #000; box-shadow: 0 0 20px var(--cyber-green); }
+    </style>
+</head>
+<body>
+    <canvas id="matrix-canvas"></canvas>
+    <header class="hero-section">
+        <div class="hero-content">
+            <h1 class="main-title">界 · 薄刻之城</h1>
+            <p class="subtitle typing-effect">现实是被深刻雕琢的变量。一切错误，都只是正确的子集。</p>
+            <div class="cta-container">
+                <a href="novel/index.html" class="cyber-btn">进入连载大厅</a>
+            </div>
+        </div>
+    </header>
+    <script src="js/main.js"></script>
+</body>
+</html>

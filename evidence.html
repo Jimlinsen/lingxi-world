@@ -5,99 +5,73 @@
     <title>ARCHIVE | 薄刻之城逻辑档案</title>
     <link rel="stylesheet" href="css/style.css">
     <style>
-        .archive-container { padding: 150px 10% 50px; }
+        .archive-container { padding: 150px 10% 50px; max-width: 1400px; margin: 0 auto; }
         .file-entry {
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            padding: 40px;
-            margin-bottom: 40px;
+            border-bottom: 1px solid var(--border-sepia);
+            padding: 60px 0;
             display: grid;
-            grid-template-columns: 1fr 2fr;
-            gap: 50px;
+            grid-template-columns: 250px 1fr;
+            gap: 80px;
         }
-        .file-meta {
-            font-family: var(--font-mono);
-            font-size: 0.7rem;
-            color: var(--accent-purple);
-            text-transform: uppercase;
-        }
-        .file-title {
-            font-family: var(--font-header);
-            font-size: 1.2rem;
-            color: #fff;
-            margin-bottom: 20px;
-        }
-        .file-body { color: var(--text-dim); font-size: 0.95rem; line-height: 1.8; }
-        .status-tag {
+        .file-meta { font-family: var(--font-mono); font-size: 0.65rem; color: var(--accent-gold); letter-spacing: 2px; }
+        .file-title { font-family: var(--font-header); font-size: 2rem; color: #fff; margin-bottom: 25px; font-style: italic; }
+        .file-body { color: var(--text-dim); font-size: 1.1rem; line-height: 1.8; font-weight: 300; }
+        .status-badge {
             display: inline-block;
-            background: var(--accent-cyan);
-            color: #000;
-            padding: 2px 10px;
+            border: 1px solid var(--accent-gold);
+            padding: 2px 12px;
             font-size: 0.6rem;
-            font-weight: 700;
-            margin-bottom: 15px;
+            color: var(--accent-gold);
+            font-family: var(--font-mono);
+            margin-bottom: 20px;
         }
     </style>
 </head>
 <body>
-    <div class="abyssal-bg"></div>
+    <canvas id="matrix-canvas"></canvas>
     <nav class="hud-nav">
         <a href="index.html" class="hud-logo">THIN-ETCHED</a>
         <div class="hud-links">
             <a href="index.html">Nexus</a>
-            <a href="hub.html">Hub</a>
+            <a href="hub.html">Monitor</a>
             <a href="evidence.html" class="active">Archive</a>
             <a href="novel/index.html">Chronicle</a>
         </div>
     </nav>
 
     <div class="archive-container">
-        <div class="section-title-wrap">
-            <span class="section-label">LOGIC_ARCHIVE / S-211-B</span>
-            <h2 class="section-header">证据室</h2>
-        </div>
+        <span class="section-label">LOGIC_ARCHIVE / S-211-B</span>
+        <h2 class="section-header">证据室</h2>
 
-        <div class="file-entry">
-            <div class="file-meta">
-                ID: LOGIC_FILE_01<br>
-                REF: MARKOV_BLANKET<br>
-                DATE: EPOCH_0
-            </div>
+        <div class="file-entry" data-scroll="fade-up">
+            <div class="file-meta">FILE_01<br>MARKOV_BLANKET<br>EPOCH_ZERO</div>
             <div>
-                <span class="status-tag">SECURED</span>
-                <h3 class="file-title">核心命题：界限之必要性</h3>
+                <span class="status-badge">SECURED</span>
+                <h3 class="file-title">界限之必要性</h3>
                 <div class="file-body">
                     <p>意识需要区分内外，边界即是马尔科夫毯。排除所有不可能，薄刻之城的底层逻辑完全自洽。</p>
                 </div>
             </div>
         </div>
 
-        <div class="file-entry">
-            <div class="file-meta">
-                ID: LOGIC_FILE_02<br>
-                REF: INDRA_NET<br>
-                DATE: EPOCH_12
-            </div>
+        <div class="file-entry" data-scroll="fade-up">
+            <div class="file-meta">FILE_02<br>INDRA_NET<br>EPOCH_12</div>
             <div>
-                <span class="status-tag">ACTIVE</span>
+                <span class="status-badge">ACTIVE</span>
                 <h3 class="file-title">四法层与因陀罗网</h3>
                 <div class="file-body">
-                    <p>角色互映协议：∀角色₁, 角色₂ ∈ 灵犀世界: 角色₁ ∩ 角色₂ ≠ ∅。通过非良基集合论 (AFA公理) 实现高维互融。</p>
+                    <p>角色互映协议：∀角色₁, 角色₂ ∈ 灵犀世界: 角色₁ ∩ 角色₂ ≠ ∅。通过非良基集合论实现高维互融。</p>
                 </div>
             </div>
         </div>
 
-        <div class="file-entry">
-            <div class="file-meta">
-                ID: LOGIC_FILE_03<br>
-                REF: MYCROFT_PROTOCOL<br>
-                DATE: SINGULARITY
-            </div>
+        <div class="file-entry" data-scroll="fade-up">
+            <div class="file-meta">FILE_03<br>MYCROFT_PROTO<br>SINGULARITY</div>
             <div>
-                <span class="status-tag">DECODED</span>
+                <span class="status-badge">DECODED</span>
                 <h3 class="file-title">麦考夫招安协议</h3>
                 <div class="file-body">
-                    <p>麦考夫（第九视角）已被成功封装为清理算子。其还原意志转化为进化的负熵。幽灵已死，算子永存。</p>
+                    <p>幽灵已转化为清理算子。其还原意志已转化为进化的负熵。幽灵已死，算子永存。</p>
                 </div>
             </div>
         </div>

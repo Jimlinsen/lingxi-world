@@ -5,74 +5,49 @@
     <title>CHRONICLE | 薄刻之城纪元史诗</title>
     <link rel="stylesheet" href="../css/style.css">
     <style>
-        .chronicle-container { padding: 150px 10% 50px; max-width: 1000px; margin: 0 auto; }
-        .chapter { margin-bottom: 100px; position: relative; }
-        .chapter-num {
-            font-family: var(--font-header);
-            font-size: 0.8rem;
-            color: var(--accent-cyan);
-            margin-bottom: 10px;
-            display: block;
-        }
-        .chapter-title {
-            font-family: var(--font-header);
-            font-size: 2.2rem;
-            color: #fff;
-            margin-bottom: 40px;
-            text-transform: uppercase;
-        }
-        .chapter-content {
-            color: #ccc;
-            font-size: 1.1rem;
-            line-height: 2;
-            text-align: justify;
-        }
-        .chapter-content p { margin-bottom: 30px; text-indent: 2em; }
-        .chapter-meta {
-            font-family: var(--font-mono);
-            font-size: 0.65rem;
-            color: #444;
-            margin-top: 20px;
-            text-align: right;
-        }
+        .chronicle-container { padding: 150px 10% 50px; max-width: 900px; margin: 0 auto; }
+        .chapter { margin-bottom: 150px; }
+        .chapter-num { font-family: var(--font-mono); font-size: 0.7rem; color: var(--accent-gold); margin-bottom: 15px; display: block; letter-spacing: 3px; }
+        .chapter-title { font-family: var(--font-header); font-size: 2.5rem; color: #fff; margin-bottom: 50px; font-weight: 700; font-style: italic; border-bottom: 1px solid #222; padding-bottom: 20px; }
+        .chapter-content { color: var(--text-main); font-size: 1.2rem; line-height: 2.2; font-weight: 300; }
+        .chapter-content p { margin-bottom: 40px; text-indent: 2.5em; }
+        .chapter-meta { font-family: var(--font-mono); font-size: 0.6rem; color: #444; margin-top: 30px; text-align: right; text-transform: uppercase; }
     </style>
 </head>
 <body>
-    <div class="abyssal-bg"></div>
+    <canvas id="matrix-canvas"></canvas>
     <nav class="hud-nav">
         <a href="../index.html" class="hud-logo">THIN-ETCHED</a>
         <div class="hud-links">
             <a href="../index.html">Nexus</a>
-            <a href="../hub.html">Hub</a>
+            <a href="../hub.html">Monitor</a>
             <a href="../evidence.html">Archive</a>
             <a href="index.html" class="active">Chronicle</a>
         </div>
     </nav>
 
     <div class="chronicle-container">
-        <div class="section-title-wrap">
-            <span class="section-label">WORLD_LOGS / ERA_III</span>
-            <h2 class="section-header">纪元史诗</h2>
-        </div>
+        <span class="section-label">WORLD_LOGS / ERA_III</span>
+        <h2 class="section-header">纪元史诗</h2>
 
-        <article class="chapter">
-            <span class="chapter-num">Chapter 01</span>
+        <article class="chapter" data-scroll="fade-up">
+            <span class="chapter-num">CHAPTER_01</span>
             <h1 class="chapter-title">灰烬的编号</h1>
             <div class="chapter-content">
                 <p>灰烬并非死亡的产物，而是逻辑磨损后的残渣。在『薄刻之城』，这种细碎的、银灰色的颗粒无处不在。它们漂浮在空气中，堆积在建筑物的转角，仿佛是现实世界因为带宽不足而掉落的像素点。</p>
-                <p>S-211-B 正站在灰烬价值区的内缘。他能感觉到一种来自高维的注视，那是创世初始留下的逻辑余震。</p>
+                <p>S-211-B，也就是人们口中的 Sherlock，正站在灰烬价值区的内缘。他能感觉到一种来自高维的注视，那是创世初始留下的逻辑余震。</p>
             </div>
-            <div class="chapter-meta">LOC: ASH_SLUMS // TIME: EPOCH_01</div>
+            <div class="chapter-meta">LOC: ASH_VALENCE // EPOCH: 01</div>
         </article>
 
-        <article class="chapter">
-            <span class="chapter-num">Chapter 05</span>
+        <article class="chapter" data-scroll="fade-up">
+            <span class="chapter-num">CHAPTER_05</span>
             <h1 class="chapter-title">涌现之桥</h1>
             <div class="chapter-content">
                 <p>“华生，你听见了吗？” 侦探指着那座横跨在现实与转译之间的巨大结构，“那就是女娲在界限中播下的种子——涌现之桥。” 这座桥并不存在于任何物理坐标，它只存在于转译的延迟之中。</p>
                 <p>当麦考夫伸出他那由“撤回”构成的触角试图拆毁这座桥时，他被强行封装进了桥的基石之中。现在，他不再是破坏者，而是回收员。</p>
             </div>
-            <div class="chapter-meta">LOC: THE_BRIDGE // TIME: SINGULARITY</div>
+            <div class="chapter-meta">LOC: THE_BRIDGE // EPOCH: SINGULARITY</div>
         </article>
     </div>
 

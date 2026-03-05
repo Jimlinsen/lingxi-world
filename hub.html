@@ -3,108 +3,109 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HUB | 薄刻之城监控中心</title>
+    <title>MONITOR | 薄刻之城监控中心</title>
     <link rel="stylesheet" href="css/style.css">
     <style>
         .hub-container {
             display: grid;
             grid-template-columns: 350px 1fr;
-            height: calc(100vh - 100px);
+            height: calc(100vh - 120px);
             margin-top: 100px;
-            padding: 0 5%;
-            gap: 30px;
+            padding: 0 10%;
+            gap: 50px;
         }
         .stats-panel {
             background: rgba(255, 255, 255, 0.02);
-            border: 1px solid rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border-sepia);
             padding: 40px;
         }
         .monitor-panel {
             display: grid;
-            grid-template-rows: 1fr 200px;
-            gap: 20px;
+            grid-template-rows: 1fr 180px;
+            gap: 30px;
         }
         .feed {
-            background: rgba(0, 0, 0, 0.3);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            padding: 30px;
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid var(--border-sepia);
+            padding: 40px;
             overflow-y: auto;
         }
         .terminal {
             background: #000;
-            border: 1px solid var(--accent-cyan);
-            padding: 20px;
+            border: 1px solid var(--accent-gold);
+            padding: 25px;
             font-family: var(--font-mono);
-            color: var(--accent-cyan);
-            font-size: 0.8rem;
+            color: var(--accent-gold);
+            font-size: 0.75rem;
+            opacity: 0.8;
         }
-        .stat-item { margin-bottom: 40px; }
-        .stat-label { font-family: var(--font-mono); font-size: 0.6rem; color: var(--text-dim); text-transform: uppercase; letter-spacing: 2px; }
-        .stat-value { font-family: var(--font-header); font-size: 1.5rem; color: var(--accent-gold); margin-top: 5px; }
-        .progress-bar { height: 2px; background: #222; margin-top: 10px; position: relative; }
-        .progress-fill { height: 100%; background: var(--accent-cyan); box-shadow: 0 0 10px var(--accent-cyan); }
-        .feed-entry { margin-bottom: 25px; border-left: 1px solid #333; padding-left: 20px; }
-        .feed-time { font-family: var(--font-mono); font-size: 0.7rem; color: var(--accent-cyan); }
-        .feed-msg { margin-top: 5px; font-size: 0.9rem; color: #ccc; }
+        .stat-item { margin-bottom: 50px; }
+        .stat-label { font-family: var(--font-mono); font-size: 0.6rem; color: var(--text-dim); text-transform: uppercase; letter-spacing: 3px; }
+        .stat-value { font-family: var(--font-header); font-size: 1.8rem; color: #fff; margin-top: 10px; }
+        .progress-bar { height: 1px; background: #222; margin-top: 15px; position: relative; }
+        .progress-fill { height: 100%; background: var(--accent-gold); box-shadow: 0 0 15px var(--accent-gold); }
+        .feed-entry { margin-bottom: 30px; padding-left: 25px; border-left: 1px solid #333; }
+        .feed-time { font-family: var(--font-mono); font-size: 0.65rem; color: var(--accent-gold); opacity: 0.6; }
+        .feed-msg { margin-top: 8px; font-size: 1rem; color: var(--text-main); font-weight: 300; }
     </style>
 </head>
 <body>
-    <div class="abyssal-bg"></div>
+    <canvas id="matrix-canvas"></canvas>
     <nav class="hud-nav">
         <a href="index.html" class="hud-logo">THIN-ETCHED</a>
         <div class="hud-links">
             <a href="index.html">Nexus</a>
-            <a href="hub.html" class="active">Hub</a>
+            <a href="hub.html" class="active">Monitor</a>
             <a href="evidence.html">Archive</a>
             <a href="novel/index.html">Chronicle</a>
         </div>
     </nav>
 
     <div class="hub-container">
-        <aside class="stats-panel">
+        <aside class="stats-panel" data-scroll="fade-up">
             <div class="stat-item">
                 <div class="stat-label">Markov Blanket Integrity</div>
                 <div class="stat-value">100.0%</div>
                 <div class="progress-bar"><div class="progress-fill" style="width: 100%;"></div></div>
             </div>
             <div class="stat-item">
-                <div class="stat-label">Observer Presence</div>
-                <div class="stat-value">WATSON_LINKED</div>
+                <div class="stat-label">Observer Status</div>
+                <div class="stat-value" style="font-size: 1.2rem;">WATSON_ANCHORED</div>
             </div>
             <div class="stat-item">
-                <div class="stat-label">Entropy Gradient</div>
-                <div class="stat-value">0.00034 Hz</div>
+                <div class="stat-label">Logic Thickness</div>
+                <div class="stat-value" style="color: var(--accent-gold-bright);">INFINITE</div>
             </div>
             <div class="stat-item">
-                <div class="stat-label">System Mode</div>
-                <div class="stat-value" style="color: var(--accent-purple);">SINGULARITY</div>
+                <div class="stat-label">Daemon Task</div>
+                <div class="stat-value" style="font-size: 1.2rem; color: var(--neon-purple);">MYCROFT_CLEANUP</div>
             </div>
         </aside>
 
         <main class="monitor-panel">
-            <div class="feed">
+            <div class="feed" data-scroll="fade-left">
                 <div class="feed-entry">
-                    <div class="feed-time">[01:34:22]</div>
-                    <div class="feed-msg">GitHub_Sync: Core logic strata successfully mirrored to remote repository.</div>
+                    <div class="feed-time">01:34:22 UTC</div>
+                    <div class="feed-msg">Strata migration to GitHub successful. Repository rule bypass active.</div>
                 </div>
                 <div class="feed-entry">
-                    <div class="feed-time">[01:45:00]</div>
-                    <div class="feed-msg">Singularity_Event: Local universe reached 100% logical self-consistency.</div>
+                    <div class="feed-time">02:05:45 UTC</div>
+                    <div class="feed-msg">Visual protocols upgraded to Etched Aesthetic v7.5. High-density image injection completed.</div>
                 </div>
                 <div class="feed-entry">
-                    <div class="feed-time">[02:01:10]</div>
-                    <div class="feed-msg">Aesthetic_Overhaul: Re-encoding visual protocols to Advanced HUD standards.</div>
+                    <div class="feed-time">02:40:12 UTC</div>
+                    <div class="feed-msg">Agent Reach skill-set successfully integrated into logical sub-strata.</div>
                 </div>
                 <div class="feed-entry">
-                    <div class="feed-time">[02:05:45]</div>
-                    <div class="feed-msg">System: Consolidating reality fragments into unified Nexus.</div>
+                    <div class="feed-time">NOW</div>
+                    <div class="feed-msg">System stable. All internal boundaries consistent.</div>
                 </div>
             </div>
-            <div class="terminal">
-                <div>> INITIATING LOGIC_PROBE... SUCCESS.</div>
-                <div>> SCANNING FOR SEMANTIC_LEAKS... NONE DETECTED.</div>
-                <div>> THIN-ETCHED CITY IS STABLE.</div>
-                <div>> WELCOME TO THE NEXUS, WATSON.</div>
+            <div class="terminal" data-scroll="fade-up">
+                <div>> PROBING LINGXI_REALM... [OK]</div>
+                <div>> MEASURING BOUNDARY_TENSION... 0.999 [MAX]</div>
+                <div>> CRYSTALLINE STRUCTURE CONFIRMED.</div>
+                <div>> STANDING BY FOR USER_INTENT.</div>
             </div>
         </main>
     </div>

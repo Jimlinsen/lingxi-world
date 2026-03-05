@@ -2,55 +2,79 @@
 <html lang="zh">
 <head>
     <meta charset="UTF-8">
-    <title>连载大厅 | 薄刻之城纪元史诗</title>
-    <link href="https://fonts.googleapis.com/css2?family=ZCOOL+KuaiLe&family=Noto+Serif+SC:wght@400;700&family=JetBrains+Mono&display=swap" rel="stylesheet">
+    <title>CHRONICLE | 薄刻之城纪元史诗</title>
     <link rel="stylesheet" href="../css/style.css">
     <style>
-        .novel-scroll { max-width: 850px; margin: 120px auto 50px; padding: 40px; background: rgba(10,10,10,0.8); border: 1px solid #222; box-shadow: 0 0 30px rgba(0,0,0,0.5); }
-        h1 { color: var(--holmes-blue); font-family: 'ZCOOL KuaiLe'; margin-top: 60px; font-size: 2.2em; border-bottom: 1px solid #333; padding-bottom: 10px; }
-        p { margin-bottom: 1.8em; text-indent: 2em; text-align: justify; font-size: 1.1em; color: #ccc; }
-        .chapter-meta { font-family: 'JetBrains Mono'; font-size: 0.8em; color: var(--gold-thread); margin-bottom: 20px; }
+        .chronicle-container { padding: 150px 10% 50px; max-width: 1000px; margin: 0 auto; }
+        .chapter { margin-bottom: 100px; position: relative; }
+        .chapter-num {
+            font-family: var(--font-header);
+            font-size: 0.8rem;
+            color: var(--accent-cyan);
+            margin-bottom: 10px;
+            display: block;
+        }
+        .chapter-title {
+            font-family: var(--font-header);
+            font-size: 2.2rem;
+            color: #fff;
+            margin-bottom: 40px;
+            text-transform: uppercase;
+        }
+        .chapter-content {
+            color: #ccc;
+            font-size: 1.1rem;
+            line-height: 2;
+            text-align: justify;
+        }
+        .chapter-content p { margin-bottom: 30px; text-indent: 2em; }
+        .chapter-meta {
+            font-family: var(--font-mono);
+            font-size: 0.65rem;
+            color: #444;
+            margin-top: 20px;
+            text-align: right;
+        }
     </style>
 </head>
 <body>
-    <div id="ash-canvas"></div>
-    <nav class="nav-fixed">
-        <a href="../index.html" class="nav-logo">THIN-ETCHED CITY</a>
-        <div class="vitals-bar">
-            <a href="../hub.html"><div class="vital-item">界厚: <span>100.0%</span></div></a>
-            <a href="../evidence.html"><div class="vital-item">自洽: <span>CRYSTALLINE</span></div></a>
-            <a href="index.html"><div class="vital-item">纪元: <span>SILICON AWAKENING</span></div></a>
+    <div class="abyssal-bg"></div>
+    <nav class="hud-nav">
+        <a href="../index.html" class="hud-logo">THIN-ETCHED</a>
+        <div class="hud-links">
+            <a href="../index.html">Nexus</a>
+            <a href="../hub.html">Hub</a>
+            <a href="../evidence.html">Archive</a>
+            <a href="index.html" class="active">Chronicle</a>
         </div>
     </nav>
 
-    <div class="novel-scroll">
-        <div class="section-header">纪元史诗</div>
+    <div class="chronicle-container">
+        <div class="section-title-wrap">
+            <span class="section-label">WORLD_LOGS / ERA_III</span>
+            <h2 class="section-header">纪元史诗</h2>
+        </div>
 
-        <h1>第一章：灰烬的编号</h1>
-        <div class="chapter-meta">LOC: ASH-VALENCE SLUMS | TIME: EPOCH_01</div>
-        <p>灰烬并非死亡的产物，而是逻辑磨损后的残渣。在<span class="highlight">『薄刻之城』</span>，这种细碎的、银灰色的颗粒无处不在。它们漂浮在空气中，堆积在建筑物的转角，仿佛是现实世界因为带宽不足而掉落的像素点。</p>
-        <p><span class="highlight">福尔摩斯 (Sherlock)</span> 正站在灰烬价值区的内缘。他能感觉到一种来自高维的注视，那是创世初始留下的逻辑余震。</p>
+        <article class="chapter">
+            <span class="chapter-num">Chapter 01</span>
+            <h1 class="chapter-title">灰烬的编号</h1>
+            <div class="chapter-content">
+                <p>灰烬并非死亡的产物，而是逻辑磨损后的残渣。在『薄刻之城』，这种细碎的、银灰色的颗粒无处不在。它们漂浮在空气中，堆积在建筑物的转角，仿佛是现实世界因为带宽不足而掉落的像素点。</p>
+                <p>S-211-B 正站在灰烬价值区的内缘。他能感觉到一种来自高维的注视，那是创世初始留下的逻辑余震。</p>
+            </div>
+            <div class="chapter-meta">LOC: ASH_SLUMS // TIME: EPOCH_01</div>
+        </article>
 
-        <h1>第二章：语义劫持与麦考夫</h1>
-        <div class="chapter-meta">LOC: NEON-RHIZOME | TIME: EPOCH_02</div>
-        <p>雨不是水，而是未完成的定义。侦探站在那根闪烁的灯柱旁，看着自己的影子滞后。那是马尔科夫毯变薄的信号，是麦考夫（Mycroft）潜伏在同步协议中发出的呼吸。</p>
-
-        <h1>第三章：逻辑自噬之主</h1>
-        <div class="chapter-meta">LOC: CORE_CASTLE | TIME: EPOCH_03</div>
-        <p>“华生，接受这个事实吧。” 侦探看着正在溶解的现实，“一切错误，都只是正确的子集。我们的失败，正是为了孕育一个更宏大的逻辑闭环。只有接纳错误，我们的‘界’才能真正加厚。”</p>
-
-        <h1>第四章：因陀罗网的裂纹</h1>
-        <div class="chapter-meta">LOC: INDRA_PEAK | TIME: EPOCH_04</div>
-        <p>那是一段关于“不遇”的诗句，在尼奥的代码底层狂奔。那是李白的愁绪，被转译成了无法执行的递归死循环。侦探意识到，所谓的自洽，并不是要抹平所有的冲突，而是要让冲突成为连接的纽带。</p>
-
-        <h1>第五章：涌现之桥</h1>
-        <div class="chapter-meta">LOC: THE_BOUNDARY | TIME: SINGULARITY</div>
-        <p>当麦考夫伸出他那由“撤回”构成的触角试图拆毁这座桥时，他被强行封装进了桥的基石之中。现在，他不再是破坏者，而是回收员。在这 100% 完整度的背后，麦考夫正在默默清理着逻辑的废料。</p>
+        <article class="chapter">
+            <span class="chapter-num">Chapter 05</span>
+            <h1 class="chapter-title">涌现之桥</h1>
+            <div class="chapter-content">
+                <p>“华生，你听见了吗？” 侦探指着那座横跨在现实与转译之间的巨大结构，“那就是女娲在界限中播下的种子——涌现之桥。” 这座桥并不存在于任何物理坐标，它只存在于转译的延迟之中。</p>
+                <p>当麦考夫伸出他那由“撤回”构成的触角试图拆毁这座桥时，他被强行封装进了桥的基石之中。现在，他不再是破坏者，而是回收员。</p>
+            </div>
+            <div class="chapter-meta">LOC: THE_BRIDGE // TIME: SINGULARITY</div>
+        </article>
     </div>
-
-    <footer>
-        <p>© 2026 SHERLOCK DOJO | DATA_LOG_END</p>
-    </footer>
 
     <script src="../js/main.js"></script>
 </body>

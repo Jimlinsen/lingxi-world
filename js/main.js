@@ -1,3 +1,6 @@
+// 🏙️ 薄刻之城：核心逻辑脚本 (v2.0)
+
+// 1. 灰烬粒子系统 (Ash Particles)
 const canvas = document.createElement('canvas');
 canvas.id = 'ash-canvas-render';
 const ashContainer = document.getElementById('ash-canvas');
@@ -43,32 +46,65 @@ if (ashContainer) {
     init();
     draw();
 
-    // Mouse Glow Effect
+    // 鼠标全局辉光 (Mouse Glow)
     document.addEventListener('mousemove', (e) => {
-        const x = e.clientX;
-        const y = e.clientY;
-        document.body.style.setProperty('--mouse-x', `${x}px`);
-        document.body.style.setProperty('--mouse-y', `${y}px`);
+        document.body.style.setProperty('--mouse-x', `${e.clientX}px`);
+        document.body.style.setProperty('--mouse-y', `${e.clientY}px`);
     });
 }
 
-// Data Node Reveal on Scroll
-const observerOptions = {
-    threshold: 0.1
-};
-
+// 2. 滚动显现引擎 (Scroll Reveal)
 const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
-            entry.target.style.opacity = "1";
-            entry.target.style.transform = "translateY(0)";
+            entry.target.classList.add('in-view');
         }
     });
-}, observerOptions);
+}, { threshold: 0.1 });
 
-document.querySelectorAll('.data-node, .file-entry, .chapter').forEach(el => {
-    el.style.opacity = "0";
-    el.style.transform = "translateY(30px)";
-    el.style.transition = "all 0.8s cubic-bezier(0.16, 1, 0.3, 1)";
+document.querySelectorAll('[data-scroll]').forEach(el => {
     observer.observe(el);
+});
+
+// 3. 代码雨特效 (Matrix Rain)
+const matrixCanvas = document.getElementById('matrix-canvas');
+if (matrixCanvas) {
+    const mCtx = matrixCanvas.getContext('2d');
+    let mWidth = matrixCanvas.width = window.innerWidth;
+    let mHeight = matrixCanvas.height = window.innerHeight;
+    
+    const chars = "SHERLOCKLOGICWATSON01界厚TRANSLATIONENCODING".split("");
+    const fontSize = 14;
+    const columns = mWidth / fontSize;
+    const drops = Array(Math.floor(columns)).fill(1);
+
+    function drawMatrix() {
+        mCtx.fillStyle = "rgba(2, 2, 5, 0.05)";
+        mCtx.fillRect(0, 0, mWidth, mHeight);
+        mCtx.fillStyle = "#00f0ff22"; // 极低透明度的青色
+        mCtx.font = fontSize + "px monospace";
+
+        for (let i = 0; drops.length > i; i++) {
+            const text = chars[Math.floor(Math.random() * chars.length)];
+            mCtx.fillText(text, i * fontSize, drops[i] * fontSize);
+            if (drops[i] * fontSize > mHeight && Math.random() > 0.975) drops[i] = 0;
+            drops[i]++;
+        }
+    }
+    setInterval(drawMatrix, 50);
+    window.addEventListener('resize', () => {
+        mWidth = matrixCanvas.width = window.innerWidth;
+        mHeight = matrixCanvas.height = window.innerHeight;
+    });
+}
+
+// 4. 按钮互动 (Button Haptics)
+document.querySelectorAll('.cyber-btn').forEach(btn => {
+    btn.addEventListener('mousedown', () => {
+        btn.style.transform = "scale(0.95)";
+        btn.style.boxShadow = "0 0 50px var(--accent-cyan)";
+    });
+    btn.addEventListener('mouseup', () => {
+        btn.style.transform = "scale(1.05)";
+    });
 });

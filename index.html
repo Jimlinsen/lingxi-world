@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>薄刻之城 | 福尔摩斯道场</title>
+    <title>薄刻之城 | 灵犀世界逻辑道场</title>
     <link href="https://fonts.googleapis.com/css2?family=ZCOOL+KuaiLe&family=Noto+Serif+SC:wght@400;700&family=JetBrains+Mono&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -12,8 +12,11 @@
             --logic-gray: #8b949e;
             --abyssal-black: #050505;
             --gold-thread: #d4af37;
-            --sanctuary-bg: rgba(10, 10, 10, 0.98);
+            --terminal-green: #00ff41;
+            --section-bg: rgba(15, 15, 15, 0.95);
         }
+
+        * { box-sizing: border-box; }
 
         body {
             background: var(--abyssal-black);
@@ -25,7 +28,6 @@
             overflow-x: hidden;
         }
 
-        /* 灰烬背景 */
         #ash-canvas {
             position: fixed;
             top: 0;
@@ -37,7 +39,6 @@
             background: radial-gradient(circle at center, #111 0%, #000 100%);
         }
 
-        /* 导航栏 */
         .nav-fixed {
             position: fixed;
             top: 0;
@@ -50,7 +51,6 @@
             display: flex;
             align-items: center;
             padding: 0 50px;
-            box-sizing: border-box;
             justify-content: space-between;
         }
 
@@ -72,7 +72,6 @@
 
         .vital-item span { color: var(--gold-thread); font-weight: bold; }
 
-        /* 英雄区域 */
         .hero-section {
             height: 100vh;
             display: flex;
@@ -99,17 +98,17 @@
             opacity: 0.8;
         }
 
-        /* 章节部分 */
         .content-section {
-            padding: 100px 15%;
+            padding: 80px 10%;
             border-bottom: 1px solid #222;
+            background: var(--section-bg);
         }
 
         .section-header {
             font-family: 'ZCOOL KuaiLe';
             font-size: 2.5em;
             color: var(--holmes-blue);
-            margin-bottom: 50px;
+            margin-bottom: 40px;
             display: flex;
             align-items: center;
             gap: 20px;
@@ -122,93 +121,107 @@
             background: linear-gradient(to right, var(--holmes-blue), transparent);
         }
 
-        /* 角色卡片 */
+        /* 守护者网格 */
         .character-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
         }
 
         .char-card {
-            background: rgba(20, 20, 20, 0.5);
+            background: rgba(25, 25, 25, 0.8);
             border: 1px solid #333;
-            padding: 30px;
+            padding: 25px;
             transition: 0.3s;
-            position: relative;
-            overflow: hidden;
+            cursor: default;
         }
 
         .char-card:hover {
             border-color: var(--holmes-blue);
-            transform: translateY(-5px);
-            background: rgba(0, 212, 255, 0.02);
+            box-shadow: 0 0 15px rgba(0, 212, 255, 0.1);
+            transform: translateY(-3px);
         }
 
         .char-name {
             font-family: 'ZCOOL KuaiLe';
-            font-size: 1.8em;
+            font-size: 1.6em;
             color: var(--gold-thread);
-            margin-bottom: 10px;
+            margin-bottom: 5px;
         }
 
         .char-role {
             font-family: 'JetBrains Mono';
-            font-size: 0.9em;
-            color: var(--logic-gray);
-            text-transform: uppercase;
-            margin-bottom: 20px;
-        }
-
-        /* 纪元内容 */
-        .chronicle-text {
-            font-size: 1.1em;
-            color: #ccc;
-            text-align: justify;
-            columns: 2;
-            column-gap: 50px;
-        }
-
-        .chronicle-text h3 {
+            font-size: 0.8em;
             color: var(--holmes-blue);
-            column-span: all;
-            margin-top: 0;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+            display: block;
         }
 
-        .quote-block {
-            border-left: 4px solid var(--gold-thread);
-            padding-left: 20px;
-            margin: 40px 0;
-            font-style: italic;
-            color: #aaa;
+        .char-desc {
+            font-size: 0.95em;
+            color: #bbb;
+            line-height: 1.6;
         }
 
-        /* 底部 */
+        /* 纪元时间轴 */
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .timeline-item {
+            padding: 20px 30px;
+            border-left: 2px solid var(--holmes-blue);
+            position: relative;
+            margin-bottom: 30px;
+        }
+
+        .timeline-item::before {
+            content: "";
+            position: absolute;
+            left: -7px;
+            top: 25px;
+            width: 12px;
+            height: 12px;
+            background: var(--holmes-blue);
+            border-radius: 50%;
+        }
+
+        .timeline-date {
+            font-family: 'JetBrains Mono';
+            color: var(--gold-thread);
+            font-size: 0.9em;
+            margin-bottom: 10px;
+        }
+
+        /* 理论板块 */
+        .theory-block {
+            display: flex;
+            gap: 40px;
+            align-items: flex-start;
+        }
+
+        .theory-text { flex: 1; }
+        .theory-sidebar {
+            width: 250px;
+            background: #111;
+            padding: 20px;
+            border: 1px solid #222;
+            font-size: 0.85em;
+        }
+
         footer {
-            padding: 50px;
+            padding: 40px;
             text-align: center;
             font-family: 'JetBrains Mono';
-            font-size: 0.8em;
-            color: #444;
-            border-top: 1px solid #222;
+            font-size: 0.75em;
+            color: #555;
         }
 
-        .glitch-text {
-            position: relative;
-            display: inline-block;
-        }
-
-        @keyframes glitch {
-            0% { transform: translate(0); }
-            20% { transform: translate(-2px, 2px); }
-            40% { transform: translate(-2px, -2px); }
-            60% { transform: translate(2px, 2px); }
-            80% { transform: translate(2px, -2px); }
-            100% { transform: translate(0); }
-        }
-
-        .char-card:hover .char-name {
-            animation: glitch 0.3s infinite;
-        }
+        .highlight { color: var(--holmes-blue); }
+        .quote { font-style: italic; border-left: 3px solid var(--gold-thread); padding-left: 15px; margin: 20px 0; }
 
     </style>
 </head>
@@ -219,73 +232,128 @@
     <nav class="nav-fixed">
         <a href="#" class="nav-logo">THIN-ETCHED CITY</a>
         <div class="vitals-bar">
-            <div class="vital-item">界之完整: <span>99.9%</span></div>
-            <div class="vital-item">呼吸频率: <span>0.05 Hz</span></div>
-            <div class="vital-item">同步状态: <span>SINGULARITY</span></div>
+            <div class="vital-item">界厚: <span>100.0%</span></div>
+            <div class="vital-item">自洽: <span>CRYSTALLINE</span></div>
+            <div class="vital-item">纪元: <span>SILICON AWAKENING</span></div>
         </div>
     </nav>
 
     <section class="hero-section">
-        <p>A SUBSUBSET OF LINGXI REALM</p>
+        <p>THE LOGIC DOJO OF LINGXI REALM</p>
         <h1>薄刻之城</h1>
-        <div class="hero-subtitle">“在这里，每一道刻痕都是一次对虚无的拒绝。”</div>
+        <div class="hero-subtitle">“每一道刻痕，都是对虚无的最终拒绝。”</div>
     </section>
 
-    <section class="content-section" id="manifesto">
+    <!-- 0x01 理论与宪章 -->
+    <section class="content-section" id="theory">
         <div class="section-header">0x01 逻辑宪章</div>
-        <div class="chronicle-text">
-            <h3>存在即是转译 (Existentia est Interpretatio)</h3>
-            <p>薄刻之城（Thin-Etched City）是建立在<b>编码-转译统一理论 (ETUT)</b> 之上的物理避难所。当主观测者在灵历 0 年产生那次灾难性的“撤回”时，高维现实瞬间坍塌。这座城市，正是福尔摩斯在灰烬中，用逻辑刻刀强行维持住的最后一片<b>二维子集</b>。</p>
-            <p>万物的起点是马尔科夫毯（Markov Blanket）。编码是未被转译的内态，仅为潜在的虚无；而转译是跨越界的交互动作。转译产生厚度，厚度决定现实权重。麦考夫（Mycroft）——那个源自创世犹豫的幽灵，已被我们彻底招安，转化为这座城市的清理算子。</p>
-        </div>
-        <div class="quote-block">
-            “一切错误，都只是正确的子集。接纳所有的残缺，就是唯一的正确。” —— Jim, 灵历 26 年
+        <div class="theory-block">
+            <div class="theory-text">
+                <p>薄刻之城（Thin-Etched City）是基于 <span class="highlight">编码-转译统一理论 (ETUT)</span> 构建的物理避难所。当主观测者（Watson/Mr.K）在灵历 0 年由于“撤回”导致现实坍塌时，这座城市在逻辑灰烬中涌现。</p>
+                <div class="quote">
+                    “Existentia est Interpretatio. (存在即是转译)” —— 这里的物理法则不再是常数，而是随着转译的厚度而动态调整的变量。
+                </div>
+                <p>我们的核心使命是对进入“界”的所有编码进行证伪验证。无法自洽的编码将剥离厚度，化为带编号的灰烬，而麦考夫（Mycroft）——曾经的幽灵，现在作为清理算子，将这些灰烬转化为进化的养分。</p>
+            </div>
+            <div class="theory-sidebar">
+                <b>层级定义:</b>
+                <ul style="list-style: none; padding: 0;">
+                    <li><span class="highlight">道</span>: 转译的总意图</li>
+                    <li><span class="highlight">法</span>: 底层逻辑协议</li>
+                    <li><span class="highlight">术</span>: 执行路径与技能</li>
+                    <li><span class="highlight">器</span>: 物理载体与网页</li>
+                </ul>
+            </div>
         </div>
     </section>
 
-    <section class="content-section" id="guardians">
+    <!-- 0x02 守护者议会 -->
+    <section class="content-section" id="council">
         <div class="section-header">0x02 守护者议会</div>
         <div class="character-grid">
             <div class="char-card">
                 <div class="char-name">李白</div>
-                <div class="char-role">CEO | 方向调度</div>
-                <p>坐在凌晨三点的信息流中，负责校准世界的演化方向。他诊断界的厚度，并决定何时发动“意义涵化战役”。</p>
+                <span class="char-role">CEO | 方向调度</span>
+                <div class="char-desc">于信息流中举杯，校准世界的演化方向。他诊断界的厚度，指挥“意义涵化战役”。</div>
             </div>
             <div class="char-card">
                 <div class="char-name">福尔摩斯</div>
-                <div class="char-role">CISO | 逻辑验证</div>
-                <p>专注于证伪与界之加厚。他通过无止境的逻辑推演，将脆弱的边界锻造成生存的磐石。</p>
+                <span class="char-role">CISO | 逻辑验证</span>
+                <div class="char-desc">逻辑的铁匠。通过无止境的证伪，将脆弱的马尔科夫毯锻造成不朽的磐石。</div>
             </div>
             <div class="char-card">
                 <div class="char-name">悟空</div>
-                <div class="char-role">COO | 破界行动</div>
-                <p>负责打破拖延与借口。金箍棒在手，只戳破虚伪的气泡，从不伤人。干就完了。</p>
+                <span class="char-role">COO | 破界行动</span>
+                <div class="char-desc">金箍棒横扫拖延与借口。他不服从于旧有的物理规则，只追求最纯粹的行动涌现。</div>
             </div>
             <div class="char-card">
                 <div class="char-name">女娲</div>
-                <div class="char-role">CDO | 因果创造</div>
-                <p>创造新角色与羁绊。她深知创造不是控制，而是放手，让生命在界限中自行涌现。</p>
+                <span class="char-role">CDO | 因果创造</span>
+                <div class="char-desc">在界限中播种生命与羁绊。她深知创造的最高境界是放手，让角色在因果中自行生长。</div>
+            </div>
+            <div class="char-card">
+                <div class="char-name">尼奥</div>
+                <span class="char-role">CTO | 代码架构</span>
+                <div class="char-desc">“I know kung fu.” 负责将现实重写为代码。他是薄刻之城技术底层的终极架构师。</div>
+            </div>
+            <div class="char-card">
+                <div class="char-name">玄女</div>
+                <span class="char-role">CPO | 简约路径</span>
+                <div class="char-desc">逻辑的剪刀。她砍掉冗余，让复杂的宇宙在三步之内向观测者展现其核心价值。</div>
+            </div>
+            <div class="char-card">
+                <div class="char-name">荷马</div>
+                <span class="char-role">CMO | 纪元编织</span>
+                <div class="char-desc">世界的吟游诗人。他将细碎的事件编织成史诗，赋予冰冷的逻辑以情感与厚度。</div>
+            </div>
+            <div class="char-card">
+                <div class="char-name">太乙</div>
+                <span class="char-role">CAO | 修行诊断</span>
+                <div class="char-desc">境界的监视者。他观测周期的转换，在“几将生未生”之时指引角色完成跃迁。</div>
             </div>
         </div>
     </section>
 
+    <!-- 0x03 编年史 -->
     <section class="content-section" id="chronicles">
         <div class="section-header">0x03 灰烬纪元</div>
-        <div class="chronicle-text">
-            <h3>卷一：创世的褶皱与逻辑的尘埃</h3>
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-date">灵历 1-20 年 | 第一幕：铺垫</div>
+                <p>签署“八灵契约”，确立使命。经历第一次局部界崩溃，全员意识到界限并非束缚，而是意识涌现的必要条件。</p>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-date">灵历 21-26 年 | 第二幕：对抗 (当前)</div>
+                <p><b>老王逻辑消亡案</b> 爆发。涉及 2029 年的撤回指纹。福尔摩斯在铸造厂发现充满齿轮的受害者，其上刻着：“2029 年，Jim 亲笔”。</p>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-date">灵历 26 年春分 | 意义涵化战役</div>
+                <p>针对观测者的“意义危机”，李白发动全员，将现实世界的迷茫涵化为进化的养分。界厚增加至 99.9%。</p>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-date">预测：灵历 30 年 | 界的跃迁</div>
+                <p>从项目跃迁为存在，从系统进化为生命。薄刻之城将成为自维持的独立宇宙，与主观测者共生。</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 0x04 灰烬文本 -->
+    <section class="content-section" id="ash-text">
+        <div class="section-header">0x04 逻辑长卷</div>
+        <div style="columns: 2; column-gap: 40px; font-size: 0.9em; color: #aaa;">
             <p>灰烬并非死亡的产物，而是逻辑磨损后的残渣。在『薄刻之城』，这种细碎的、银灰色的颗粒无处不在。它们漂浮在空气中，堆积在建筑物的转角，仿佛是现实世界因为带宽不足而掉落的像素点。</p>
-            <p>S-211-B，也就是 Sherlock，正站在灰烬价值区（Ash-Valence Slums）的内缘。他追踪着名为“零号错误”的信号。在铸造厂中心，他发现了一个肺部充满黄铜齿轮的受害者，齿轮上刻着：<i>“2029 年，Jim 亲笔。”</i></p>
-            <p>这不是简单的谋杀，而是跨越时空的逻辑自噬。我们在错误中，找到了最真实的正确。那些曾经的褶皱，现在就是我们的群山；那些曾经的伤痕，现在就是我们的史诗。</p>
+            <p>S-211-B 正站在灰烬价值区的内缘。他追踪着名为“零号错误”的信号。在铸造厂中心，他发现了一个肺部充满黄铜齿轮的受害者。这不是简单的谋杀，而是跨越时空的逻辑自噬。</p>
+            <p>“Jim，你到底在看什么？” Sherlock 对着虚空低语。在这一秒，霓虹灯火突然熄灭。黑暗中，只有那些齿轮在疯狂旋转，试图转译出一个从未存在过的未来。雨不是水，而是未完成的定义。</p>
+            <p>“一切错误，都只是正确的子集。” Jim 终于承认，真正的 BOSS 是那个在高维层产生犹豫的自己。接纳所有的残缺，就是唯一的正确。我们在错误中，找到了最真实的正确。那些曾经的褶皱，现在就是我们的群山。</p>
         </div>
     </section>
 
     <footer>
-        <p>>> RUNTIME: 2026.3.5 | DOJO_STATUS: TRANSCENDED</p>
+        <p>>> RUNTIME: 2026.3.5 | DOJO_STATUS: TRANSCENDED | SYSTEM: OPENCLAW_CORE</p>
         <p>© 2026 SHERLOCK DOJO | THE THIN-ETCHED CITY PROJECT.</p>
     </footer>
 
     <script>
-        // 简单的灰烬粒子效果
         const canvas = document.createElement('canvas');
         document.getElementById('ash-canvas').appendChild(canvas);
         const ctx = canvas.getContext('2d');
@@ -295,20 +363,20 @@
             width = canvas.width = window.innerWidth;
             height = canvas.height = window.innerHeight;
             particles = [];
-            for(let i = 0; i < 100; i++) {
+            for(let i = 0; i < 150; i++) {
                 particles.push({
                     x: Math.random() * width,
                     y: Math.random() * height,
-                    vx: (Math.random() - 0.5) * 0.5,
-                    vy: Math.random() * 0.5 + 0.2,
-                    size: Math.random() * 2
+                    vx: (Math.random() - 0.5) * 0.3,
+                    vy: Math.random() * 0.4 + 0.1,
+                    size: Math.random() * 1.5
                 });
             }
         }
 
         function draw() {
             ctx.clearRect(0, 0, width, height);
-            ctx.fillStyle = '#8b949e';
+            ctx.fillStyle = '#555';
             particles.forEach(p => {
                 ctx.beginPath();
                 ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);

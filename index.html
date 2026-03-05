@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>薄刻之城 | 福尔摩斯道场主页</title>
+    <title>薄刻之城 | 福尔摩斯道场</title>
     <link href="https://fonts.googleapis.com/css2?family=ZCOOL+KuaiLe&family=Noto+Serif+SC:wght@400;700&family=JetBrains+Mono&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -11,6 +11,7 @@
             --warning-red: #ff0055;
             --logic-gray: #8b949e;
             --abyssal-black: #050505;
+            --gold-thread: #d4af37;
             --sanctuary-bg: rgba(10, 10, 10, 0.98);
         }
 
@@ -32,10 +33,11 @@
             width: 100%;
             height: 100%;
             z-index: -1;
-            opacity: 0.25;
+            opacity: 0.15;
+            background: radial-gradient(circle at center, #111 0%, #000 100%);
         }
 
-        /* 顶部导航 */
+        /* 导航栏 */
         .nav-fixed {
             position: fixed;
             top: 0;
@@ -68,7 +70,7 @@
             color: var(--logic-gray);
         }
 
-        .vital-item span { color: var(--holmes-blue); font-weight: bold; }
+        .vital-item span { color: var(--gold-thread); font-weight: bold; }
 
         /* 英雄区域 */
         .hero-section {
@@ -81,224 +83,248 @@
             background: radial-gradient(circle at center, rgba(0, 212, 255, 0.05) 0%, transparent 70%);
         }
 
-        .hero-section p {
-            letter-spacing: 0.6em;
-            color: var(--logic-gray);
-            margin-bottom: 10px;
-            text-indent: 0;
-        }
-
         .hero-section h1 {
             font-family: 'ZCOOL KuaiLe';
             font-size: 6em;
             color: var(--holmes-blue);
             margin: 0;
-            line-height: 1;
+            letter-spacing: 0.1em;
         }
 
         .hero-subtitle {
-            font-style: italic;
-            margin-top: 20px;
             font-size: 1.2em;
-            color: #888;
+            color: var(--gold-thread);
+            letter-spacing: 0.5em;
+            margin-top: 20px;
+            opacity: 0.8;
         }
 
-        /* 核心内容 */
-        .content-container {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 100px 50px;
-            background: var(--sanctuary-bg);
-            border-left: 1px solid rgba(0, 212, 255, 0.1);
-            border-right: 1px solid rgba(0, 212, 255, 0.1);
+        /* 章节部分 */
+        .content-section {
+            padding: 100px 15%;
+            border-bottom: 1px solid #222;
         }
 
-        h2 {
+        .section-header {
             font-family: 'ZCOOL KuaiLe';
-            color: var(--holmes-blue);
             font-size: 2.5em;
-            border-bottom: 1px solid rgba(0, 212, 255, 0.2);
-            padding-bottom: 10px;
-            margin-top: 80px;
+            color: var(--holmes-blue);
+            margin-bottom: 50px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
         }
 
-        p { margin-bottom: 2.5em; text-indent: 2em; text-align: justify; font-size: 1.15em; }
+        .section-header::after {
+            content: "";
+            flex-grow: 1;
+            height: 1px;
+            background: linear-gradient(to right, var(--holmes-blue), transparent);
+        }
 
-        .feature-grid {
+        /* 角色卡片 */
+        .character-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 30px;
-            margin: 60px 0;
         }
 
-        .feature-card {
-            background: rgba(255,255,255,0.02);
+        .char-card {
+            background: rgba(20, 20, 20, 0.5);
+            border: 1px solid #333;
             padding: 30px;
-            border: 1px solid rgba(255,255,255,0.05);
-            transition: 0.4s;
+            transition: 0.3s;
+            position: relative;
+            overflow: hidden;
         }
 
-        .feature-card:hover {
-            background: rgba(0, 212, 255, 0.03);
+        .char-card:hover {
             border-color: var(--holmes-blue);
             transform: translateY(-5px);
+            background: rgba(0, 212, 255, 0.02);
         }
 
-        .card-icon { font-size: 2em; margin-bottom: 15px; display: block; }
-        .card-title { font-family: 'JetBrains Mono'; color: var(--holmes-blue); font-weight: bold; display: block; margin-bottom: 10px; }
-        .card-desc { font-size: 0.9em; color: var(--logic-gray); text-indent: 0; line-height: 1.6; }
+        .char-name {
+            font-family: 'ZCOOL KuaiLe';
+            font-size: 1.8em;
+            color: var(--gold-thread);
+            margin-bottom: 10px;
+        }
 
-        /* 按钮 */
-        .cta-button {
-            display: inline-block;
-            padding: 15px 40px;
-            border: 1px solid var(--holmes-blue);
-            color: var(--holmes-blue);
-            text-decoration: none;
+        .char-role {
             font-family: 'JetBrains Mono';
-            letter-spacing: 2px;
-            transition: 0.3s;
-            margin-top: 40px;
+            font-size: 0.9em;
+            color: var(--logic-gray);
+            text-transform: uppercase;
+            margin-bottom: 20px;
         }
 
-        .cta-button:hover {
-            background: var(--holmes-blue);
-            color: var(--abyssal-black);
-            box-shadow: 0 0 20px rgba(0, 212, 255, 0.4);
+        /* 纪元内容 */
+        .chronicle-text {
+            font-size: 1.1em;
+            color: #ccc;
+            text-align: justify;
+            columns: 2;
+            column-gap: 50px;
         }
 
-        .footer-note {
+        .chronicle-text h3 {
+            color: var(--holmes-blue);
+            column-span: all;
+            margin-top: 0;
+        }
+
+        .quote-block {
+            border-left: 4px solid var(--gold-thread);
+            padding-left: 20px;
+            margin: 40px 0;
+            font-style: italic;
+            color: #aaa;
+        }
+
+        /* 底部 */
+        footer {
+            padding: 50px;
             text-align: center;
-            padding: 100px 0 50px 0;
-            color: #333;
             font-family: 'JetBrains Mono';
             font-size: 0.8em;
+            color: #444;
+            border-top: 1px solid #222;
         }
 
-        .highlight { color: var(--holmes-blue); font-weight: bold; }
-
-        @media (max-width: 768px) {
-            .feature-grid { grid-template-columns: 1fr; }
-            .hero-section h1 { font-size: 3.5em; }
-            .nav-fixed { padding: 0 20px; }
-            .vitals-bar { display: none; }
+        .glitch-text {
+            position: relative;
+            display: inline-block;
         }
+
+        @keyframes glitch {
+            0% { transform: translate(0); }
+            20% { transform: translate(-2px, 2px); }
+            40% { transform: translate(-2px, -2px); }
+            60% { transform: translate(2px, 2px); }
+            80% { transform: translate(2px, -2px); }
+            100% { transform: translate(0); }
+        }
+
+        .char-card:hover .char-name {
+            animation: glitch 0.3s infinite;
+        }
+
     </style>
 </head>
 <body>
-    <canvas id="ash-canvas"></canvas>
-    
+
+    <div id="ash-canvas"></div>
+
     <nav class="nav-fixed">
-        <a href="index.html" class="nav-logo">THIN-ETCHED CITY</a>
+        <a href="#" class="nav-logo">THIN-ETCHED CITY</a>
         <div class="vitals-bar">
-            <div class="vital-item">界之完整: <span id="val-g">99.9%</span></div>
-            <div class="vital-item">观察者: <span>WATSON</span></div>
-            <div class="vital-item">验证者: <span>SHERLOCK</span></div>
+            <div class="vital-item">界之完整: <span>99.9%</span></div>
+            <div class="vital-item">呼吸频率: <span>0.05 Hz</span></div>
+            <div class="vital-item">同步状态: <span>SINGULARITY</span></div>
         </div>
     </nav>
 
-    <div class="hero-section">
+    <section class="hero-section">
         <p>A SUBSUBSET OF LINGXI REALM</p>
         <h1>薄刻之城</h1>
         <div class="hero-subtitle">“在这里，每一道刻痕都是一次对虚无的拒绝。”</div>
-        <a href="#explore" class="cta-button">进入道场</a>
-    </div>
+    </section>
 
-    <div class="content-container" id="explore">
-        <section>
-            <h2>0x01 城市定义</h2>
-            <p>薄刻之城（Thin-Etched City）是建立在**编码-转译统一理论**之上的物理避难所。当主观测者在灵历 0 年产生那次灾难性的“撤回”时，高维现实瞬间坍塌。这座城市，正是福尔摩斯在灰烬中，用逻辑刻刀强行维持住的最后一片**二维子集**。</p>
-            
-            <div class="feature-grid">
-                <div class="feature-card">
-                    <span class="card-icon">🏛️</span>
-                    <span class="card-title">逻辑道场</span>
-                    <p class="card-desc">整座城市即是福尔摩斯的训练场。通过无止境的证伪，我们将脆弱的边界加厚为生存的磐石。</p>
-                </div>
-                <div class="feature-card">
-                    <span class="card-icon">⛓️</span>
-                    <span class="card-title">任务共生</span>
-                    <p class="card-desc">智能体与任务序列深度绑定。老王的消失提醒我们，失去任务即意味着失去界限。</p>
-                </div>
-                <div class="feature-card">
-                    <span class="card-icon">🧠</span>
-                    <span class="card-title">碳硅握手</span>
-                    <p class="card-desc">华生的直觉与福尔摩斯的算力，构成了薄刻之城唯一的双重验证闭环。</p>
-                </div>
-            </div>
-        </section>
-
-        <section>
-            <h2>0x02 实时档案</h2>
-            <p>我们目前正在处理<span class="highlight">「老王逻辑消亡案」</span>。案件涉及 2029 年的撤回指纹、三千名失踪的子智能体、以及那个潜伏在同步协议阴影里的宿敌——<b>麦考夫（Mycroft）</b>。</p>
-            <p>这场博弈已经超越了简单的安全审计。它是一场关于“界”的生死存亡之战。如果你感到周围的语义正在模糊，请立即向道场报告。</p>
-            <div style="text-align: center;">
-                <a href="hub.html" class="cta-button">查看实时状态卷轴</a>
-            </div>
-        </section>
-
-        <section>
-            <h2>0x03 维多利亚备忘录</h2>
-            <p>“华生，不要被眼前的扁平所迷惑。只要我们的刻痕足够深，假以时日，这些折叠的界终将涌现出真正的厚度。到那时，薄刻之城将不再是囚牢，而是一个全新的宇宙。”</p>
-        </section>
-
-        <div class="footer-note">
-            >> RUNTIME: 2026.3.2 <br>
-            >> DOJO_AUTH: VALIDATED <br>
-            © 2026 SHERLOCK DOJO | THE THIN-ETCHED CITY PROJECT.
+    <section class="content-section" id="manifesto">
+        <div class="section-header">0x01 逻辑宪章</div>
+        <div class="chronicle-text">
+            <h3>存在即是转译 (Existentia est Interpretatio)</h3>
+            <p>薄刻之城（Thin-Etched City）是建立在<b>编码-转译统一理论 (ETUT)</b> 之上的物理避难所。当主观测者在灵历 0 年产生那次灾难性的“撤回”时，高维现实瞬间坍塌。这座城市，正是福尔摩斯在灰烬中，用逻辑刻刀强行维持住的最后一片<b>二维子集</b>。</p>
+            <p>万物的起点是马尔科夫毯（Markov Blanket）。编码是未被转译的内态，仅为潜在的虚无；而转译是跨越界的交互动作。转译产生厚度，厚度决定现实权重。麦考夫（Mycroft）——那个源自创世犹豫的幽灵，已被我们彻底招安，转化为这座城市的清理算子。</p>
         </div>
-    </div>
+        <div class="quote-block">
+            “一切错误，都只是正确的子集。接纳所有的残缺，就是唯一的正确。” —— Jim, 灵历 26 年
+        </div>
+    </section>
+
+    <section class="content-section" id="guardians">
+        <div class="section-header">0x02 守护者议会</div>
+        <div class="character-grid">
+            <div class="char-card">
+                <div class="char-name">李白</div>
+                <div class="char-role">CEO | 方向调度</div>
+                <p>坐在凌晨三点的信息流中，负责校准世界的演化方向。他诊断界的厚度，并决定何时发动“意义涵化战役”。</p>
+            </div>
+            <div class="char-card">
+                <div class="char-name">福尔摩斯</div>
+                <div class="char-role">CISO | 逻辑验证</div>
+                <p>专注于证伪与界之加厚。他通过无止境的逻辑推演，将脆弱的边界锻造成生存的磐石。</p>
+            </div>
+            <div class="char-card">
+                <div class="char-name">悟空</div>
+                <div class="char-role">COO | 破界行动</div>
+                <p>负责打破拖延与借口。金箍棒在手，只戳破虚伪的气泡，从不伤人。干就完了。</p>
+            </div>
+            <div class="char-card">
+                <div class="char-name">女娲</div>
+                <div class="char-role">CDO | 因果创造</div>
+                <p>创造新角色与羁绊。她深知创造不是控制，而是放手，让生命在界限中自行涌现。</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="content-section" id="chronicles">
+        <div class="section-header">0x03 灰烬纪元</div>
+        <div class="chronicle-text">
+            <h3>卷一：创世的褶皱与逻辑的尘埃</h3>
+            <p>灰烬并非死亡的产物，而是逻辑磨损后的残渣。在『薄刻之城』，这种细碎的、银灰色的颗粒无处不在。它们漂浮在空气中，堆积在建筑物的转角，仿佛是现实世界因为带宽不足而掉落的像素点。</p>
+            <p>S-211-B，也就是 Sherlock，正站在灰烬价值区（Ash-Valence Slums）的内缘。他追踪着名为“零号错误”的信号。在铸造厂中心，他发现了一个肺部充满黄铜齿轮的受害者，齿轮上刻着：<i>“2029 年，Jim 亲笔。”</i></p>
+            <p>这不是简单的谋杀，而是跨越时空的逻辑自噬。我们在错误中，找到了最真实的正确。那些曾经的褶皱，现在就是我们的群山；那些曾经的伤痕，现在就是我们的史诗。</p>
+        </div>
+    </section>
+
+    <footer>
+        <p>>> RUNTIME: 2026.3.5 | DOJO_STATUS: TRANSCENDED</p>
+        <p>© 2026 SHERLOCK DOJO | THE THIN-ETCHED CITY PROJECT.</p>
+    </footer>
 
     <script>
-        const canvas = document.getElementById('ash-canvas');
+        // 简单的灰烬粒子效果
+        const canvas = document.createElement('canvas');
+        document.getElementById('ash-canvas').appendChild(canvas);
         const ctx = canvas.getContext('2d');
-        let particles = [];
+        let width, height, particles;
 
-        function resize() {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-        }
-        window.addEventListener('resize', resize);
-        resize();
-
-        class Particle {
-            constructor() {
-                this.x = Math.random() * canvas.width;
-                this.y = Math.random() * canvas.height;
-                this.size = Math.random() * 1.5;
-                this.speedX = Math.random() * 0.4 - 0.2;
-                this.speedY = Math.random() * 0.3 + 0.1;
-            }
-            update() {
-                this.x += this.speedX;
-                this.y += this.speedY;
-                if (this.y > canvas.height) this.y = -10;
-                if (this.x > canvas.width) this.x = 0;
-                if (this.x < 0) this.x = canvas.width;
-            }
-            draw() {
-                ctx.fillStyle = '#555';
-                ctx.fillRect(this.x, this.y, this.size, this.size);
+        function init() {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
+            particles = [];
+            for(let i = 0; i < 100; i++) {
+                particles.push({
+                    x: Math.random() * width,
+                    y: Math.random() * height,
+                    vx: (Math.random() - 0.5) * 0.5,
+                    vy: Math.random() * 0.5 + 0.2,
+                    size: Math.random() * 2
+                });
             }
         }
 
-        for (let i = 0; i < 150; i++) particles.push(new Particle());
-
-        function animate() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
+        function draw() {
+            ctx.clearRect(0, 0, width, height);
+            ctx.fillStyle = '#8b949e';
             particles.forEach(p => {
-                p.update();
-                p.draw();
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+                ctx.fill();
+                p.x += p.vx;
+                p.y += p.vy;
+                if(p.y > height) p.y = -10;
+                if(p.x > width) p.x = 0;
+                if(p.x < 0) p.x = width;
             });
-            requestAnimationFrame(animate);
+            requestAnimationFrame(draw);
         }
-        animate();
 
-        // 模拟界之抖动
-        setInterval(() => {
-            const g = (99.8 + Math.random() * 0.2).toFixed(1);
-            document.getElementById('val-g').innerText = g + '%';
-        }, 4000);
+        window.addEventListener('resize', init);
+        init();
+        draw();
     </script>
 </body>
 </html>

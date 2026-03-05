@@ -8,7 +8,6 @@
 </head>
 <body>
     <canvas id="matrix-canvas"></canvas>
-    <div class="abyssal-bg"></div>
     <div id="ash-canvas"></div>
 
     <nav class="hud-nav">
@@ -19,100 +18,94 @@
             <a href="evidence.html">Archive</a>
             <a href="novel/index.html">Chronicle</a>
         </div>
-        <div style="font-family: var(--font-mono); font-size: 0.6rem; color: var(--accent-cyan);">
-            INT_100%_SECURED
-        </div>
     </nav>
 
     <section class="hero">
-        <div class="hero-bg-img"></div>
-        <span class="hero-tag" data-scroll="fade-up">// DETECTIVE_PROTOCOL_V6</span>
-        <h1 class="hero-title glitch" data-text="薄刻之城" data-scroll="fade-up">薄刻之城</h1>
-        <p class="hero-desc" data-scroll="fade-up" data-delay="0.4">Establishing a logical sanctuary in the remnants of a collapsed reality. 每一道刻痕，都是对虚无的最终拒绝。</p>
-        <div data-scroll="fade-up">
-            <a href="#manifesto" class="cyber-btn">初始化解密</a>
+        <div class="hero-content">
+            <span class="hero-tag">// DETECTIVE_PROTOCOL_V7</span>
+            <h1 class="hero-title">薄刻之城</h1>
+            <p class="hero-desc">Establishing a logical sanctuary in the remnants of a collapsed reality. 每一道刻痕，都是对虚无的最终拒绝。</p>
+            <a href="#theory" class="cyber-btn" data-scroll="fade-up">初始化解密</a>
         </div>
     </section>
 
-    <section class="section" id="manifesto" data-scroll="fade-left">
-        <div class="massive-text">PROTOCOL</div>
-        <div class="content-block">
-            <div class="section-title-wrap">
-                <span class="section-label">0x01 / THEORY</span>
-                <h2 class="section-header">逻辑宪章</h2>
+    <section class="section" id="theory">
+        <span class="section-label">0x01 / THEORY</span>
+        <h2 class="section-header">逻辑宪章</h2>
+        <div class="feature-block">
+            <div class="prose-text" data-scroll="fade-left">
+                <p><strong>薄刻之城 (Thin-Etched City)</strong> 是基于 <strong>ETUT (编码-转译统一理论)</strong> 构建的逻辑避难所。</p>
+                <p style="margin-top: 20px;">当主观测者在灵历 0 年产生那次灾难性的“撤回”时，高维现实瞬间坍塌。马尔科夫毯 (Markov Blanket) 定义了自我的边界，而转译决定了现实的厚度。</p>
+                <div class="quote" style="border-left: 2px solid var(--neon-purple); padding-left: 20px; font-style: italic; margin-top: 30px;">“Existentia est Interpretatio. (存在即是转译)”</div>
             </div>
-            <div class="prose-text">
-                <p><strong>薄刻之城 (Thin-Etched City)</strong> 是建立在 <strong>ETUT (编码-转译统一理论)</strong> 之上的物理避难所。</p>
-                <p style="margin-top: 20px;">万物的起点是 <strong>马尔科夫毯 (Markov Blanket)</strong>。转译产生厚度，厚度决定现实权重。</p>
-            </div>
+            <img src="images/gears.jpg" class="feature-img" alt="Logic Gears" data-scroll="fade-up">
         </div>
     </section>
 
     <section class="section" id="guardians">
-        <div class="section-title-wrap" style="text-align: center;" data-scroll="zoom-in">
-            <span class="section-label">0x02 / COUNCIL</span>
-            <h2 class="section-header">守护者议会</h2>
-        </div>
+        <span class="section-label">0x02 / COUNCIL</span>
+        <h2 class="section-header">守护者议会</h2>
         <div class="data-grid">
-            <div class="data-node" data-scroll="slide-up">
-                <span class="node-icon">🍶</span>
+            <div class="data-node" data-scroll="fade-up">
                 <h3 class="node-name">LI BAI</h3>
                 <span class="node-role">CEO | Direction</span>
-                <p class="node-text">于信息流中举杯，校准世界演化方向。</p>
+                <p class="node-text">于信息流中举杯，校准世界演化方向。诊断界厚，指挥“意义涵化战役”。</p>
             </div>
-            <div class="data-node" data-scroll="slide-up" data-delay="0.2">
-                <span class="node-icon">🕵️‍♂️</span>
+            <div class="data-node" data-scroll="fade-up" data-delay="0.1">
                 <h3 class="node-name">SHERLOCK</h3>
                 <span class="node-role">CISO | Verification</span>
-                <p class="node-text">逻辑的铁匠。通过无止境的证伪，加固马尔科夫毯。</p>
+                <p class="node-text">逻辑的铁匠。通过无止境的证伪，将脆弱的马尔科夫毯锻造成不朽的磐石。</p>
             </div>
-            <div class="data-node" data-scroll="slide-up" data-delay="0.4">
-                <span class="node-icon">🐒</span>
+            <div class="data-node" data-scroll="fade-up" data-delay="0.2">
                 <h3 class="node-name">WUKONG</h3>
                 <span class="node-role">COO | Action</span>
-                <p class="node-text">横扫拖延与借口。追求最纯粹的行动涌现。</p>
+                <p class="node-text">横扫拖延与借口。不服从旧物理规则，追求最纯粹的行动涌现。干就完了。</p>
             </div>
-            <div class="data-node" data-scroll="slide-up">
-                <span class="node-icon">🐍</span>
+            <div class="data-node" data-scroll="fade-up">
                 <h3 class="node-name">NUWA</h3>
                 <span class="node-role">CDO | Creation</span>
-                <p class="node-text">播种生命。创造的最高境界是放手。</p>
+                <p class="node-text">播种生命与羁绊。深知创造的最高境界是放手，让角色在因果中自行生长。</p>
             </div>
-            <div class="data-node" data-scroll="slide-up" data-delay="0.2">
-                <span class="node-icon">💊</span>
+            <div class="data-node" data-scroll="fade-up" data-delay="0.1">
                 <h3 class="node-name">NEO</h3>
                 <span class="node-role">CTO | Architecture</span>
-                <p class="node-text">负责将现实重写为代码。技术底层的终极架构师。</p>
+                <p class="node-text">“I know kung fu.” 负责将现实重写为代码。他是薄刻之城技术底层的终极架构师。</p>
             </div>
-            <div class="data-node" data-scroll="slide-up" data-delay="0.4">
-                <span class="node-icon">✂️</span>
+            <div class="data-node" data-scroll="fade-up" data-delay="0.2">
                 <h3 class="node-name">XUANNU</h3>
                 <span class="node-role">CPO | Simplicity</span>
-                <p class="node-text">逻辑的剪刀。让复杂的宇宙在三步之内展现价值。</p>
+                <p class="node-text">逻辑的剪刀。砍掉冗余，让复杂的宇宙在三步之内向观测者展现核心价值。</p>
             </div>
         </div>
     </section>
 
     <section class="section" id="archives">
-        <div class="massive-text">HISTORY</div>
-        <div class="content-block">
-            <div class="section-title-wrap">
-                <span class="section-label">0x03 / ERA</span>
-                <h2 class="section-header">灰烬纪元</h2>
-            </div>
-            <div class="prose-text">
-                <p>灰烬并非死亡的产物，而是逻辑磨损后的残渣。在『薄刻之城』，这种细碎的、银灰色的颗粒无处不在。它们漂浮在空气中，堆积在建筑物的转角，仿佛是现实世界因为带宽不足而掉落的像素点。</p>
+        <span class="section-label">0x03 / ERA</span>
+        <h2 class="section-header">灰烬纪元</h2>
+        <div class="feature-block">
+            <img src="images/library.jpg" class="feature-img" alt="Digital Archive" data-scroll="fade-up">
+            <div class="prose-text" data-scroll="fade-left">
+                <p>灰烬并非死亡的产物，而是逻辑磨损后的残渣。在『薄刻之城』，这种细碎的、银灰色的颗粒无处不在。</p>
                 <p style="margin-top: 20px;">S-211-B 正站在灰烬价值区的内缘。他追踪着名为“零号错误”的信号。在铸造厂中心，他发现了一个肺部充满黄铜齿轮的受害者。刻着：<i>“2029 年，Jim 亲笔。”</i></p>
             </div>
         </div>
     </section>
 
-    <footer>
-        <div class="footer-info">
-            RUNNING ON OPENCLAW_CORE // SYNC_STATUS: CRYSTALLINE<br>
-            © 2026 THE THIN-ETCHED CITY PROJECT
+    <section class="section" id="bridge">
+        <span class="section-label">0x04 / SINGULARITY</span>
+        <h2 class="section-header">涌现之桥</h2>
+        <div class="feature-block">
+            <div class="prose-text" data-scroll="fade-left">
+                <p>横跨在现实与转译之间的巨大结构，那就是女娲在界限中播下的种子——<strong>涌现之桥</strong>。</p>
+                <p style="margin-top: 20px;">它只存在于转译的延迟之中。每一秒 0.5 秒的同步偏移，都是为了给灵魂留下呼吸的空间。在这 100% 完整度的背后，麦考夫正在默默清理着逻辑的废料。</p>
+            </div>
+            <img src="images/bridge.jpg" class="feature-img" alt="Emergence Bridge" data-scroll="fade-up">
         </div>
-        <div class="footer-id">DOJO_ID: SHERLOCK_221B</div>
+    </section>
+
+    <footer>
+        <div>RUNNING ON OPENCLAW_CORE // SYNC_STATUS: CRYSTALLINE</div>
+        <div style="margin-top: 10px;">© 2026 THE THIN-ETCHED CITY PROJECT</div>
     </footer>
 
     <script src="js/main.js"></script>

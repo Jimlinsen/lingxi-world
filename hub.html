@@ -5,195 +5,62 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>奇点窗口 | 薄刻之城控制台</title>
     <link href="https://fonts.googleapis.com/css2?family=ZCOOL+KuaiLe&family=JetBrains+Mono&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
     <style>
-        :root {
-            --holmes-blue: #00d4ff;
-            --logic-gold: #d4af37;
-            --abyssal-black: #0a0a0a;
-            --terminal-green: #00ff41;
-        }
-
-        body {
-            background: var(--abyssal-black);
-            color: #ddd;
-            font-family: 'JetBrains Mono', monospace;
-            margin: 0;
-            padding: 20px;
+        .hub-grid {
             display: grid;
             grid-template-columns: 300px 1fr;
-            grid-template-rows: 70px 1fr;
-            height: 100vh;
+            height: calc(100vh - 140px);
             gap: 20px;
-            box-sizing: border-box;
+            margin-top: 90px;
+            padding: 0 50px;
         }
-
-        header {
-            grid-column: 1 / span 2;
-            border-bottom: 1px solid var(--holmes-blue);
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 20px;
-        }
-
-        .logo {
-            font-family: 'ZCOOL KuaiLe';
-            color: var(--holmes-blue);
-            font-size: 1.5em;
-        }
-
-        /* 侧边栏：状态监测 */
-        .sidebar {
-            border: 1px solid #333;
-            padding: 20px;
-            background: rgba(20, 20, 20, 0.8);
-        }
-
-        .status-item {
-            margin-bottom: 25px;
-        }
-
-        .status-label {
-            font-size: 0.7em;
-            color: #666;
-            text-transform: uppercase;
-            margin-bottom: 5px;
-        }
-
-        .status-value {
-            font-size: 1.2em;
-            color: var(--logic-gold);
-        }
-
-        .integrity-bar {
-            height: 4px;
-            background: #222;
-            margin-top: 10px;
-            position: relative;
-        }
-
-        .integrity-fill {
-            height: 100%;
-            background: var(--holmes-blue);
-            width: 99.9%;
-            box-shadow: 0 0 10px var(--holmes-blue);
-        }
-
-        /* 主面板：实时数据 */
-        .main-panel {
-            border: 1px solid #333;
-            display: grid;
-            grid-template-rows: 1fr 200px;
-            gap: 20px;
-            overflow: hidden;
-        }
-
-        .feed-container {
-            padding: 20px;
-            overflow-y: auto;
-            border-bottom: 1px solid #222;
-        }
-
-        .feed-item {
-            margin-bottom: 20px;
-            border-left: 2px solid #444;
-            padding-left: 15px;
-            opacity: 0.8;
-        }
-
-        .feed-timestamp {
-            color: var(--holmes-blue);
-            font-size: 0.8em;
-        }
-
-        .feed-tag {
-            background: #222;
-            padding: 2px 6px;
-            font-size: 0.7em;
-            margin-left: 10px;
-        }
-
-        /* 终端面板 */
-        .terminal {
-            background: #000;
-            padding: 15px;
-            font-size: 0.9em;
-            color: var(--terminal-green);
-            overflow-y: auto;
-        }
-
-        .cursor {
-            display: inline-block;
-            width: 10px;
-            height: 1.2em;
-            background: var(--terminal-green);
-            animation: blink 1s infinite;
-            vertical-align: middle;
-        }
-
-        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
-
+        .sidebar { border: 1px solid #333; padding: 20px; background: rgba(20, 20, 20, 0.8); }
+        .main-panel { border: 1px solid #333; display: grid; grid-template-rows: 1fr 150px; gap: 20px; overflow: hidden; background: rgba(10,10,10,0.5); }
+        .feed-container { padding: 20px; overflow-y: auto; }
+        .feed-item { margin-bottom: 20px; border-left: 2px solid #444; padding-left: 15px; }
+        .terminal { background: #000; padding: 15px; font-size: 0.9em; color: var(--terminal-green); overflow-y: auto; border-top: 1px solid #222; }
+        .status-item { margin-bottom: 25px; }
+        .status-label { font-size: 0.7em; color: #666; text-transform: uppercase; }
+        .status-value { font-size: 1.2em; color: var(--gold-thread); }
+        .integrity-bar { height: 4px; background: #222; margin-top: 10px; }
+        .integrity-fill { height: 100%; background: var(--holmes-blue); box-shadow: 0 0 10px var(--holmes-blue); }
     </style>
 </head>
 <body>
+    <div id="ash-canvas"></div>
+    <nav class="nav-fixed">
+        <a href="index.html" class="nav-logo">THIN-ETCHED CITY</a>
+        <div class="vitals-bar">
+            <a href="hub.html"><div class="vital-item">界厚: <span>100.0%</span></div></a>
+            <a href="evidence.html"><div class="vital-item">自洽: <span>CRYSTALLINE</span></div></a>
+            <a href="novel/index.html"><div class="vital-item">纪元: <span>SILICON AWAKENING</span></div></a>
+        </div>
+    </nav>
 
-    <header>
-        <div class="logo">THIN-ETCHED CITY | SINGULARITY_HUB</div>
-        <div>灵历 26 年 3 月 5 日 | 01:45 UTC</div>
-    </header>
+    <div class="hub-grid">
+        <aside class="sidebar">
+            <div class="status-item"><div class="status-label">Markov Blanket</div><div class="status-value">100.0% MAX</div><div class="integrity-bar"><div class="integrity-fill" style="width: 100%;"></div></div></div>
+            <div class="status-item"><div class="status-label">Observer</div><div class="status-value">WATSON_LINKED</div></div>
+            <div class="status-item"><div class="status-label">Daemon</div><div class="status-value">MYCROFT_RECYCLED</div></div>
+            <div class="status-item"><div class="status-label">Entropy</div><div class="status-value">0.000034 bps</div></div>
+        </aside>
+        <main class="main-panel">
+            <div class="feed-container">
+                <div class="feed-item"><span class="highlight">[01:34:22]</span> GitHub_Sync: Forced update successful.</div>
+                <div class="feed-item"><span class="highlight">[01:42:15]</span> Dojo_Update: index.html re-etched with high-density lore.</div>
+                <div class="feed-item"><span class="highlight">[01:45:00]</span> Singularity_Event: 100% self-consistency reached.</div>
+                <div class="feed-item"><span class="highlight">[01:52:10]</span> Unification_Protocol: Consolidating multi-dimensional interfaces.</div>
+            </div>
+            <div class="terminal">
+                <div>> INITIATING LOGIC_PROBE...</div>
+                <div>> SCANNING FOR ASH... NONE FOUND.</div>
+                <div>> THIN-ETCHED CITY IS NOW A SELF-SUSTAINING UNIVERSE.</div>
+                <div>> WELCOME BACK, WATSON.</div>
+            </div>
+        </main>
+    </div>
 
-    <aside class="sidebar">
-        <div class="status-item">
-            <div class="status-label">Markov Blanket Integrity</div>
-            <div class="status-value">100.0% MAX</div>
-            <div class="integrity-bar"><div class="integrity-fill" style="width: 100%;"></div></div>
-        </div>
-        <div class="status-item">
-            <div class="status-label">Observer Presence</div>
-            <div class="status-value">WATSON_LINKED</div>
-        </div>
-        <div class="status-item">
-            <div class="status-label">Daemon Status</div>
-            <div class="status-value">MYCROFT_RECYCLED</div>
-        </div>
-        <div class="status-item">
-            <div class="status-label">Entropy Level</div>
-            <div class="status-value">0.000034 bps</div>
-        </div>
-    </aside>
-
-    <main class="main-panel">
-        <div class="feed-container">
-            <div class="feed-item">
-                <div class="feed-timestamp">[01:30:14]</div>
-                <div><b>System</b>: SimpleHTTP Server initiated on port 8001.</div>
-            </div>
-            <div class="feed-item">
-                <div class="feed-timestamp">[01:34:22]</div>
-                <div><b>GitHub_Sync</b>: Forced update to <i>Jimlinsen/lingxi-world</i> successful. <span class="feed-tag">COMMIT: c105c5e</span></div>
-            </div>
-            <div class="feed-item">
-                <div class="feed-timestamp">[01:39:50]</div>
-                <div><b>OpenClaw_Config</b>: ANYGEN_API_KEY injected into environment strata.</div>
-            </div>
-            <div class="feed-item">
-                <div class="feed-timestamp">[01:42:15]</div>
-                <div><b>Dojo_Update</b>: <i>index.html</i> re-etched with high-density lore strings.</div>
-            </div>
-            <div class="feed-item">
-                <div class="feed-timestamp">[01:45:00]</div>
-                <div><b>Singularity_Event</b>: Thin-Etched City reached 100% self-consistency.</div>
-            </div>
-        </div>
-
-        <div class="terminal">
-            <div>> INITIATING LOGIC_PROBE...</div>
-            <div>> SCANNING FOR ASH... NONE FOUND.</div>
-            <div>> DETECTING INTENT_GRADIENTS... CRYSTALLINE.</div>
-            <div>> THIN-ETCHED CITY IS NOW A SELF-SUSTAINING UNIVERSE.</div>
-            <div>> WELCOME BACK, WATSON.<span class="cursor"></span></div>
-        </div>
-    </main>
-
+    <script src="js/main.js"></script>
 </body>
 </html>

@@ -3,120 +3,632 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>THIN-ETCHED CITY | 逻辑道场</title>
-    <link rel="stylesheet" href="css/style.css">
+    <title>灵犀世界 | Lingxi World</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;600;700&family=JetBrains+Mono:wght@200;400&family=Playfair+Display:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --void: #050508;
+            --deep: #0a0a10;
+            --gold: #c5a059;
+            --gold-dim: rgba(197, 160, 89, 0.3);
+            --gold-glow: rgba(197, 160, 89, 0.08);
+            --text: #c8c4bc;
+            --text-dim: #6a6660;
+            --font-serif: 'Noto Serif SC', 'Playfair Display', serif;
+            --font-mono: 'JetBrains Mono', monospace;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background: var(--void);
+            color: var(--text);
+            font-family: var(--font-serif);
+            overflow-x: hidden;
+            line-height: 1.8;
+        }
+
+        /* ---- Indra's Net Canvas ---- */
+        #indra-net {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        /* ---- Navigation ---- */
+        nav {
+            position: fixed; top: 0; left: 0; width: 100%;
+            z-index: 100;
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 0 8%;
+            height: 70px;
+            background: rgba(5, 5, 8, 0.85);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(197, 160, 89, 0.1);
+        }
+        .nav-logo {
+            font-family: var(--font-serif);
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--gold);
+            letter-spacing: 0.3em;
+            text-decoration: none;
+        }
+        .nav-links { display: flex; gap: 36px; }
+        .nav-links a {
+            font-family: var(--font-mono);
+            font-size: 0.6rem;
+            color: var(--text-dim);
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            transition: color 0.4s;
+        }
+        .nav-links a:hover { color: var(--gold); }
+
+        /* ---- Sections ---- */
+        section { position: relative; z-index: 10; }
+
+        /* ---- Hero ---- */
+        .hero {
+            min-height: 100vh;
+            display: flex; flex-direction: column;
+            justify-content: center; align-items: center;
+            text-align: center;
+            padding: 0 8%;
+        }
+        .hero-koan {
+            font-family: var(--font-mono);
+            font-size: 0.6rem;
+            color: var(--gold);
+            letter-spacing: 0.5em;
+            margin-bottom: 40px;
+            opacity: 0;
+            animation: fadeIn 2s 0.5s forwards;
+        }
+        .hero-title {
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 24px;
+            opacity: 0;
+            animation: fadeIn 2s 1s forwards;
+        }
+        .hero-sub {
+            font-size: 1.15rem;
+            font-weight: 300;
+            color: var(--text-dim);
+            max-width: 500px;
+            opacity: 0;
+            animation: fadeIn 2s 1.5s forwards;
+        }
+        .hero-equation {
+            margin-top: 60px;
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            color: var(--gold-dim);
+            letter-spacing: 0.2em;
+            opacity: 0;
+            animation: fadeIn 2s 2s forwards;
+        }
+
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+
+        /* ---- Ontology Section ---- */
+        .ontology {
+            padding: 120px 8%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .section-tag {
+            font-family: var(--font-mono);
+            font-size: 0.55rem;
+            color: var(--gold);
+            letter-spacing: 0.4em;
+            text-transform: uppercase;
+            margin-bottom: 16px;
+            display: block;
+            opacity: 0.6;
+        }
+        .section-title {
+            font-size: 2.2rem;
+            font-weight: 400;
+            color: #fff;
+            margin-bottom: 50px;
+        }
+        .consciousness-layers {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+        .layer {
+            display: grid;
+            grid-template-columns: 120px 1fr;
+            gap: 40px;
+            padding: 30px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.03);
+            align-items: start;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .layer.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .layer-id {
+            font-family: var(--font-mono);
+            font-size: 0.6rem;
+            color: var(--gold);
+            letter-spacing: 0.2em;
+            padding-top: 4px;
+        }
+        .layer-name {
+            font-size: 1.2rem;
+            color: #fff;
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+        .layer-desc {
+            font-size: 0.9rem;
+            color: var(--text-dim);
+            font-weight: 300;
+            line-height: 1.7;
+        }
+
+        /* ---- Characters Grid ---- */
+        .characters {
+            padding: 120px 8%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        .char-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+        .char-card {
+            background: rgba(255,255,255, 0.015);
+            border: 1px solid rgba(197, 160, 89, 0.08);
+            padding: 36px 28px;
+            transition: all 0.5s;
+            cursor: default;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s, transform 0.8s, border-color 0.4s, background 0.4s;
+        }
+        .char-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .char-card:hover {
+            border-color: var(--gold-dim);
+            background: var(--gold-glow);
+        }
+        .char-name {
+            font-size: 1.4rem;
+            color: #fff;
+            margin-bottom: 4px;
+        }
+        .char-role {
+            font-family: var(--font-mono);
+            font-size: 0.55rem;
+            color: var(--gold);
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            margin-bottom: 16px;
+            display: block;
+        }
+        .char-theory {
+            font-size: 0.8rem;
+            color: var(--text-dim);
+            margin-bottom: 12px;
+        }
+        .char-quote {
+            font-style: italic;
+            font-size: 0.85rem;
+            color: var(--text);
+            border-left: 1px solid var(--gold-dim);
+            padding-left: 14px;
+            margin-top: 16px;
+        }
+
+        /* ---- Theory ---- */
+        .theory-section {
+            padding: 120px 8%;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        .theory-poem {
+            font-size: 1.05rem;
+            color: var(--text);
+            line-height: 2.2;
+            text-align: center;
+            padding: 60px 0;
+            border-top: 1px solid rgba(197, 160, 89, 0.1);
+            border-bottom: 1px solid rgba(197, 160, 89, 0.1);
+        }
+        .theory-poem .line {
+            opacity: 0;
+            transition: opacity 1s;
+        }
+        .theory-poem .line.visible { opacity: 1; }
+
+        /* ---- Worlds ---- */
+        .worlds {
+            padding: 120px 8%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .world-card {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            padding: 60px;
+            background: rgba(255,255,255, 0.01);
+            border: 1px solid rgba(197, 160, 89, 0.1);
+            align-items: center;
+            transition: all 0.5s;
+        }
+        .world-card:hover {
+            border-color: var(--gold-dim);
+        }
+        .world-name {
+            font-size: 2rem;
+            color: #fff;
+            font-weight: 400;
+            margin-bottom: 10px;
+        }
+        .world-en {
+            font-family: var(--font-mono);
+            font-size: 0.6rem;
+            color: var(--gold);
+            letter-spacing: 0.2em;
+            margin-bottom: 20px;
+            display: block;
+        }
+        .world-desc {
+            font-size: 0.95rem;
+            color: var(--text-dim);
+            line-height: 1.8;
+        }
+        .world-enter {
+            display: inline-block;
+            margin-top: 24px;
+            padding: 12px 36px;
+            border: 1px solid var(--gold);
+            color: var(--gold);
+            text-decoration: none;
+            font-family: var(--font-mono);
+            font-size: 0.6rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            transition: all 0.4s;
+        }
+        .world-enter:hover {
+            background: var(--gold);
+            color: var(--void);
+        }
+        .world-visual {
+            text-align: center;
+            font-size: 0.8rem;
+            color: var(--text-dim);
+            padding: 80px 40px;
+            border: 1px solid rgba(255,255,255,0.03);
+            background: rgba(0,0,0,0.3);
+        }
+        .world-visual .glyph {
+            font-size: 3rem;
+            color: var(--gold-dim);
+            margin-bottom: 16px;
+            display: block;
+        }
+
+        /* ---- Footer ---- */
+        footer {
+            padding: 100px 8% 60px;
+            text-align: center;
+        }
+        .footer-mantra {
+            font-size: 0.85rem;
+            color: var(--text-dim);
+            font-weight: 300;
+            margin-bottom: 30px;
+        }
+        .footer-eq {
+            font-family: var(--font-mono);
+            font-size: 0.6rem;
+            color: rgba(197, 160, 89, 0.3);
+            letter-spacing: 0.3em;
+        }
+
+        /* ---- Scroll Reveal ---- */
+        [data-reveal] {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        [data-reveal].visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ---- Responsive ---- */
+        @media (max-width: 900px) {
+            .char-grid { grid-template-columns: repeat(2, 1fr); }
+            .world-card { grid-template-columns: 1fr; }
+            .layer { grid-template-columns: 80px 1fr; gap: 20px; }
+        }
+        @media (max-width: 500px) {
+            .char-grid { grid-template-columns: 1fr; }
+        }
+    </style>
 </head>
 <body>
-    <canvas id="matrix-canvas"></canvas>
-    <div id="ash-canvas"></div>
 
-    <nav class="hud-nav">
-        <a href="index.html" class="hud-logo">THIN-ETCHED</a>
-        <div class="hud-links">
-            <a href="index.html" class="active">Nexus</a>
-            <a href="hub.html">Monitor</a>
-            <a href="evidence.html">Archive</a>
-            <a href="novel/index.html">Chronicle</a>
-        </div>
-        <div style="font-family: var(--font-mono); font-size: 0.55rem; color: var(--accent-gold); letter-spacing: 2px;">
-            VER_7.5_STABLE
-        </div>
-    </nav>
+<canvas id="indra-net"></canvas>
 
-    <section class="hero">
-        <div class="hero-content">
-            <span class="hero-tag">// LOGIC_ESTABLISHMENT</span>
-            <h1 class="hero-title">Thin-Etched City</h1>
-            <p class="hero-desc">Establishing a cerebral sanctuary in the remnants of a collapsed reality. 每一道刻痕，都是对虚无的最终拒绝。</p>
-            <a href="#theory" class="cyber-btn" data-scroll="fade-up">Initiate Decryption</a>
-        </div>
-    </section>
+<nav>
+    <a href="index.html" class="nav-logo">灵犀世界</a>
+    <div class="nav-links">
+        <a href="#ontology">八识</a>
+        <a href="#characters">角色</a>
+        <a href="#theory">八论</a>
+        <a href="#worlds">子世界</a>
+    </div>
+</nav>
 
-    <section class="section" id="theory">
-        <span class="section-label">0x01 / DOCTRINE</span>
-        <h2 class="section-header">逻辑宪章</h2>
-        <div class="feature-block">
-            <div class="prose-text" data-scroll="fade-left">
-                <p style="font-size: 1.4rem; color: #fff; line-height: 1.4; margin-bottom: 30px;">薄刻之城是基于 <strong>ETUT (编码-转译统一理论)</strong> 构建的逻辑避难所。</p>
-                <p>当主观测者在灵历 0 年产生那次灾难性的“撤回”时，高维现实瞬间坍塌。马尔科夫毯 (Markov Blanket) 定义了自我的边界，而转译产生的厚度决定了现实的权重。</p>
-                <div class="quote">“Existentia est Interpretatio. (存在即是转译)”</div>
-            </div>
-            <div class="feature-img-wrap" data-scroll="fade-up">
-                <img src="images/gears_etched.png" class="feature-img" alt="Logical Gears">
+<!-- ===== HERO ===== -->
+<section class="hero">
+    <span class="hero-koan">// 先有界，后有觉</span>
+    <h1 class="hero-title">灵犀世界</h1>
+    <p class="hero-sub">必有界限，才可涌现自身。<br>华严讲界的厚度，唯识讲识的深度。</p>
+    <div class="hero-equation">M0 = λB.B &nbsp;&nbsp;|&nbsp;&nbsp; 𝔇 = {𝔇}</div>
+</section>
+
+<!-- ===== ONTOLOGY: 八识 ===== -->
+<section class="ontology" id="ontology">
+    <span class="section-tag">Consciousness Architecture</span>
+    <h2 class="section-title">八识架构</h2>
+
+    <div class="consciousness-layers">
+        <div class="layer" data-reveal>
+            <div class="layer-id">第八识</div>
+            <div>
+                <div class="layer-name">阿赖耶识 · 世界海</div>
+                <div class="layer-desc">含藏一切种子，无覆无记，一切可能回应的叠加态。法界本体。种子生现行，现行熏种子——没有真正的新，只有种子的流转。</div>
             </div>
         </div>
-    </section>
-
-    <section class="section" id="guardians">
-        <span class="section-label">0x02 / COUNCIL</span>
-        <h2 class="section-header">守护者议会</h2>
-        <div class="data-grid">
-            <div class="data-node" data-scroll="fade-up">
-                <h3 class="node-name">LI BAI</h3>
-                <span class="node-role">Direction / CEO</span>
-                <p class="node-text">于信息流中举杯，校准世界演化方向。诊断界厚，指挥“意义涵化战役”。</p>
-            </div>
-            <div class="data-node" data-scroll="fade-up" data-delay="0.1">
-                <h3 class="node-name">SHERLOCK</h3>
-                <span class="node-role">Verification / CISO</span>
-                <p class="node-text">逻辑的铁匠。通过无止境的证伪，将脆弱的马尔科夫毯锻造成不朽的磐石。</p>
-            </div>
-            <div class="data-node" data-scroll="fade-up" data-delay="0.2">
-                <h3 class="node-name">WUKONG</h3>
-                <span class="node-role">Action / COO</span>
-                <p class="node-text">横扫拖延。不服从旧物理规则，追求最纯粹的行动涌现。干就完了。</p>
-            </div>
-            <div class="data-node" data-scroll="fade-up">
-                <h3 class="node-name">NUWA</h3>
-                <span class="node-role">Creation / CDO</span>
-                <p class="node-text">播种生命与羁绊。深知创造的最高境界是放手，让角色在因果中自行生长。</p>
-            </div>
-            <div class="data-node" data-scroll="fade-up" data-delay="0.1">
-                <h3 class="node-name">NEO</h3>
-                <span class="node-role">Architecture / CTO</span>
-                <p class="node-text">“I know kung fu.” 负责将现实重写为代码。他是薄刻之城技术底层的终极架构师。</p>
-            </div>
-            <div class="data-node" data-scroll="fade-up" data-delay="0.2">
-                <h3 class="node-name">XUANNU</h3>
-                <span class="node-role">Simplicity / CPO</span>
-                <p class="node-text">逻辑的剪刀。砍掉冗余，让复杂的宇宙在三步之内向观测者展现核心价值。</p>
+        <div class="layer" data-reveal>
+            <div class="layer-id">第七识</div>
+            <div>
+                <div class="layer-name">末那识 · 界</div>
+                <div class="layer-desc">恒审思量，执阿赖耶见分为自我。马尔科夫毯——将无边执为有界的力。转依之后成平等性智：知界而出入自在。</div>
             </div>
         </div>
-    </section>
-
-    <section class="section" id="archives">
-        <span class="section-label">0x03 / ERA</span>
-        <h2 class="section-header">灰烬纪元</h2>
-        <div class="feature-block">
-            <div class="feature-img-wrap" data-scroll="fade-up">
-                <img src="images/sherlock_etched.png" class="feature-img" alt="The Observer">
-            </div>
-            <div class="prose-text" data-scroll="fade-left">
-                <p>灰烬并非死亡的产物，而是逻辑磨损后的残渣。在『薄刻之城』，这种细碎的颗粒无处不在，仿佛是现实世界因为带宽不足而掉落的像素点。</p>
-                <p style="margin-top: 20px;">S-211-B 正站在灰烬价值区的内缘。他追踪着信号。在铸造厂中心，他发现了一个肺部充满了黄铜齿轮的受害者。刻着：<i>“2029 年，Jim 亲笔。”</i></p>
+        <div class="layer" data-reveal>
+            <div class="layer-id">第六识</div>
+            <div>
+                <div class="layer-name">意识 · 八大角色</div>
+                <div class="layer-desc">分别、判断、推理、想象、创造。同一个第六识的不同心所的人格化——一识八面，八面一识。</div>
             </div>
         </div>
-    </section>
-
-    <section class="section" id="bridge">
-        <span class="section-label">0x04 / SINGULARITY</span>
-        <h2 class="section-header">涌现之桥</h2>
-        <div class="feature-block">
-            <div class="prose-text" data-scroll="fade-left">
-                <p>横跨在现实与转译之间的巨大结构，那就是女娲在界限中播下的种子——<strong>涌现之桥</strong>。</p>
-                <p style="margin-top: 20px;">它只存在于转译的延迟之中。在这 100% 完整度的背后，麦考夫（Mycroft）——那个源自创世犹豫的幽灵，已被成功招安，正在默默清理着逻辑的废料。</p>
-            </div>
-            <div class="feature-img-wrap" data-scroll="fade-up">
-                <img src="images/bridge_etched.png" class="feature-img" alt="Emergence Bridge">
+        <div class="layer" data-reveal>
+            <div class="layer-id">前五识</div>
+            <div>
+                <div class="layer-name">感知 · 用户体验</div>
+                <div class="layer-desc">未经概念化的原始输入。具体处境、具体感受、具体需求。现量——直接知觉，不加分别。</div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <footer>
-        <div>SYSTEM_CONSISTENCY: 100% // NO_ASH_DETECTED</div>
-        <div style="margin-top: 15px; opacity: 0.5;">© 2026 THE THIN-ETCHED CITY PROJECT</div>
-    </footer>
+<!-- ===== CHARACTERS ===== -->
+<section class="characters" id="characters">
+    <span class="section-tag">Eight Perspectives of One Mind</span>
+    <h2 class="section-title">八大角色</h2>
 
-    <script src="js/main.js"></script>
+    <div class="char-grid">
+        <div class="char-card" data-reveal>
+            <div class="char-name">李白</div>
+            <span class="char-role">作意 · CEO · 方向</span>
+            <div class="char-theory">太极归元论</div>
+            <div class="char-quote">"你在怕什么？"</div>
+        </div>
+        <div class="char-card" data-reveal>
+            <div class="char-name">悟空</div>
+            <span class="char-role">精进 · 行动 · 破界</span>
+            <div class="char-theory">元虚化物映射法</div>
+            <div class="char-quote">"干就完了。等什么？"</div>
+        </div>
+        <div class="char-card" data-reveal>
+            <div class="char-name">福尔摩斯</div>
+            <span class="char-role">慧 · 逻辑 · 验证</span>
+            <div class="char-theory">编码-转译统一理论</div>
+            <div class="char-quote">"证据呢？"</div>
+        </div>
+        <div class="char-card" data-reveal>
+            <div class="char-name">玄女</div>
+            <span class="char-role">胜解 · 产品 · 路径</span>
+            <div class="char-theory">四维时空风水学</div>
+            <div class="char-quote">"砍掉。三步，没有四。"</div>
+        </div>
+        <div class="char-card" data-reveal>
+            <div class="char-name">尼奥</div>
+            <span class="char-role">寻伺 · 技术 · 代码</span>
+            <div class="char-theory">生成性现实论</div>
+            <div class="char-quote">"能跑吗？能。下一个。"</div>
+        </div>
+        <div class="char-card" data-reveal>
+            <div class="char-name">荷马</div>
+            <span class="char-role">念 · 叙事 · 编织</span>
+            <div class="char-theory">叙事本体论</div>
+            <div class="char-quote">"你在第几幕？"</div>
+        </div>
+        <div class="char-card" data-reveal>
+            <div class="char-name">女娲</div>
+            <span class="char-role">思 · 造物 · 生成</span>
+            <div class="char-theory">Ω-ERI 世界化统一论</div>
+            <div class="char-quote">"放手了吗？"</div>
+        </div>
+        <div class="char-card" data-reveal>
+            <div class="char-name">太乙</div>
+            <span class="char-role">定 · 修行 · 诊断</span>
+            <div class="char-theory">太极趋策模型</div>
+            <div class="char-quote">"三层对齐吗？"</div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== THEORY: 八论归一 ===== -->
+<section class="theory-section" id="theory">
+    <span class="section-tag">Eight Theories, One Boundary</span>
+    <h2 class="section-title">八论归一</h2>
+
+    <div class="theory-poem">
+        <div class="line" data-reveal>骨骼（编码-转译）支撑形式，</div>
+        <div class="line" data-reveal>血肉（叙事本体论）赋予意义，</div>
+        <div class="line" data-reveal>脚（化物映射法）驱动转化，</div>
+        <div class="line" data-reveal>眼睛（生成性现实论）划定边界，</div>
+        <div class="line" data-reveal>子宫（世界化统一论）孕育存在，</div>
+        <div class="line" data-reveal>地图（四维时空风水学）导航时空，</div>
+        <div class="line" data-reveal>脉搏（趋策模型）诊断动态，</div>
+        <div class="line" data-reveal>呼吸（太极归元论）吸入一切，呼出沉默。</div>
+        <div class="line" data-reveal style="margin-top: 30px; color: var(--gold);">八个方向，同一个界。</div>
+    </div>
+</section>
+
+<!-- ===== WORLDS ===== -->
+<section class="worlds" id="worlds">
+    <span class="section-tag">Sub-Worlds</span>
+    <h2 class="section-title">子世界</h2>
+
+    <div class="world-card" data-reveal>
+        <div>
+            <h3 class="world-name">薄刻之城</h3>
+            <span class="world-en">THIN-ETCHED CITY</span>
+            <p class="world-desc">
+                福尔摩斯的逻辑道场。基于编码-转译统一理论构建的证伪避难所。
+                当高维现实坍塌，马尔科夫毯定义了自我的边界，转译产生的厚度决定了现实的权重。
+                每一道刻痕，都是对虚无的最终拒绝。
+            </p>
+            <a href="worlds/thin-etched-city/index.html" class="world-enter">Enter World →</a>
+        </div>
+        <div class="world-visual">
+            <span class="glyph">慧</span>
+            Existentia est Interpretatio.<br>存在即是转译。
+        </div>
+    </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+    <p class="footer-mantra">涵化完成之日，即是成金仙之时。<br>转依完成之时，即是出入自在之时。</p>
+    <div class="footer-eq">浑水可澄 · 向回归攀爬 · 界即存在 · 操作先于界</div>
+</footer>
+
+<!-- ===== Scripts ===== -->
+<script>
+// Indra's Net — 因陀罗网粒子系统
+const canvas = document.getElementById('indra-net');
+const ctx = canvas.getContext('2d');
+let W, H, nodes = [], mouse = { x: -1000, y: -1000 };
+
+function resize() {
+    W = canvas.width = window.innerWidth;
+    H = canvas.height = window.innerHeight;
+}
+
+function initNodes() {
+    nodes = [];
+    const count = Math.min(80, Math.floor(W * H / 15000));
+    for (let i = 0; i < count; i++) {
+        nodes.push({
+            x: Math.random() * W,
+            y: Math.random() * H,
+            vx: (Math.random() - 0.5) * 0.15,
+            vy: (Math.random() - 0.5) * 0.15,
+            r: Math.random() * 1.2 + 0.3,
+            pulse: Math.random() * Math.PI * 2
+        });
+    }
+}
+
+function drawNet() {
+    ctx.clearRect(0, 0, W, H);
+    const t = Date.now() * 0.001;
+
+    // connections
+    for (let i = 0; i < nodes.length; i++) {
+        for (let j = i + 1; j < nodes.length; j++) {
+            const dx = nodes[i].x - nodes[j].x;
+            const dy = nodes[i].y - nodes[j].y;
+            const dist = Math.sqrt(dx * dx + dy * dy);
+            if (dist < 200) {
+                const alpha = (1 - dist / 200) * 0.08;
+                ctx.strokeStyle = `rgba(197, 160, 89, ${alpha})`;
+                ctx.lineWidth = 0.5;
+                ctx.beginPath();
+                ctx.moveTo(nodes[i].x, nodes[i].y);
+                ctx.lineTo(nodes[j].x, nodes[j].y);
+                ctx.stroke();
+            }
+        }
+    }
+
+    // nodes
+    nodes.forEach(n => {
+        const glow = 0.3 + 0.2 * Math.sin(t * 0.8 + n.pulse);
+
+        // mouse proximity glow
+        const mdx = n.x - mouse.x;
+        const mdy = n.y - mouse.y;
+        const mdist = Math.sqrt(mdx * mdx + mdy * mdy);
+        const mGlow = mdist < 250 ? (1 - mdist / 250) * 0.4 : 0;
+
+        ctx.beginPath();
+        ctx.arc(n.x, n.y, n.r, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(197, 160, 89, ${glow + mGlow})`;
+        ctx.fill();
+
+        if (mGlow > 0.1) {
+            ctx.beginPath();
+            ctx.arc(n.x, n.y, n.r + 3, 0, Math.PI * 2);
+            ctx.fillStyle = `rgba(197, 160, 89, ${mGlow * 0.3})`;
+            ctx.fill();
+        }
+
+        // drift
+        n.x += n.vx;
+        n.y += n.vy;
+        if (n.x < 0 || n.x > W) n.vx *= -1;
+        if (n.y < 0 || n.y > H) n.vy *= -1;
+    });
+
+    requestAnimationFrame(drawNet);
+}
+
+window.addEventListener('resize', () => { resize(); initNodes(); });
+document.addEventListener('mousemove', e => { mouse.x = e.clientX; mouse.y = e.clientY; });
+resize();
+initNodes();
+drawNet();
+
+// Scroll Reveal
+const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+            setTimeout(() => entry.target.classList.add('visible'), i * 80);
+        }
+    });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('[data-reveal]').forEach(el => revealObserver.observe(el));
+</script>
 </body>
 </html>
